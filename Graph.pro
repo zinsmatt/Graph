@@ -19,7 +19,9 @@ SOURCES += \
     src/edge.cpp \
     src/element.cpp \
     src/main.cpp \
-    src/node.cpp
+    src/node.cpp \
+    src/matrix.cpp \
+    src/squarematrix.cpp
 
 SUBDIRS += \
     src/Graph.pro
@@ -30,4 +32,6 @@ DISTFILES += \
 HEADERS += \
     src/edge.h \
     src/element.h \
-    src/node.h
+    src/node.h \
+    src/matrix.h \
+    src/squarematrix.h
