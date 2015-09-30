@@ -1,12 +1,17 @@
-#include <QCoreApplication>
+#include <QApplication>
 #include <iostream>
 #include "squarematrix.h"
+#include "mainwindow.h"
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    QApplication a(argc, argv);
+
+    MainWindow win;
+    win.show();
+
 
     std::cout << "LOSC" << std::endl;
 

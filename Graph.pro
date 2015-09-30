@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core
+QT       += core \
+            widgets
 
 QT       -= gui
 
@@ -21,7 +22,9 @@ SOURCES += \
     src/main.cpp \
     src/node.cpp \
     src/matrix.cpp \
-    src/squarematrix.cpp
+    src/squarematrix.cpp \
+    src/mainwindow.cpp \
+    src/graph.cpp
 
 SUBDIRS += \
     src/Graph.pro
@@ -34,4 +37,9 @@ HEADERS += \
     src/element.h \
     src/node.h \
     src/matrix.h \
-    src/squarematrix.h
+    src/squarematrix.h \
+    src/mainwindow.h \
+    src/graph.h
+
+FORMS += \
+    src/mainwindow.ui
