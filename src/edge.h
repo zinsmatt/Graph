@@ -13,4 +13,4 @@ public:
 };
 
 #endif // EDGE_H
-ol
+
