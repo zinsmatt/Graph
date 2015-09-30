@@ -1,7 +1,7 @@
 #include "edge.h"
 
-Edge::Edge(Node* n1, Node *n2, bool oriented):
-    isOriented(oriented)
+Edge::Edge(Node* n1, Node *n2, bool orient):
+    oriented(orient)
 {
     nodes[0] = n1;
     nodes[1] = n2;

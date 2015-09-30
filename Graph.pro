@@ -24,7 +24,11 @@ SOURCES += \
     src/matrix.cpp \
     src/squarematrix.cpp \
     src/mainwindow.cpp \
-    src/graph.cpp
+    src/graph.cpp \
+    src/graphcontainer.cpp \
+    src/adjacencymatrix.cpp \
+    src/incidencematrix.cpp \
+    src/successorlist.cpp
 
 SUBDIRS += \
     src/Graph.pro
@@ -39,7 +43,11 @@ HEADERS += \
     src/matrix.h \
     src/squarematrix.h \
     src/mainwindow.h \
-    src/graph.h
+    src/graph.h \
+    src/graphcontainer.h \
+    src/adjacencymatrix.h \
+    src/incidencematrix.h \
+    src/successorlist.h
 
 FORMS += \
     src/mainwindow.ui
