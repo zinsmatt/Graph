@@ -34,6 +34,10 @@ public:
     const std::map<QString,int>& getIntAttributes() const {return intAttributes;}
     const std::map<QString,float>& getFloatAttributes() const {return floatAttributes;}
 
+    const QString& getStringAttribute(const QString& key) const {return stringAttributes.at(key);}
+    const int getIntAttribute(const QString& key) const {return intAttributes.at(key);}
+    const float getFloatAttribute(const QString& key) const {return floatAttributes.at(key);}
+
     void setStringAttributes(const std::map<QString,QString>& m){stringAttributes = m;}
     void setIntAttributes(const std::map<QString,int>& m){intAttributes = m;}
     void setFloatAttributes(const std::map<QString,float>& m){floatAttributes = m;}

@@ -13,7 +13,6 @@ int main(int argc, char *argv[])
     MainWindow win;
     Graph g;
     g.addNode(50.0,50.0,"A",0,20,"blue");
-
     g.draw(win.getScene());
 
 

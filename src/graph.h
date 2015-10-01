@@ -5,7 +5,7 @@
 #include <QPainter>
 #include <QStyleOptionGraphicsItem>
 #include <QPen>
-
+#include <iostream>
 #include "edge.h"
 
 
@@ -34,14 +34,10 @@ public:
 
     void draw(QGraphicsScene& scene)
     {
-        QPainter painter;
-        QPen myPen(Qt::black, 2, Qt::SolidLine);
-        QStyleOptionGraphicsItem i;
-        painter.setPen(myPen);
-        for(std::vector<Node>::iterator it = nodes.begin(); it != nodes.end(); ++it)
+        for(auto it : nodes)
         {
-            (*it).QGraphicsEllipseItem::paint(painter,&i);
-            scene.addItem(&*it);
+            it.setItem(scene.addEllipse(it.getX(), it.getY(), 25,25, QPen(Qt::green), it.getBrush()));
+            scene.addItem(&it.getItem());
         }
     }
 
