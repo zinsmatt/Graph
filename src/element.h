@@ -21,6 +21,7 @@ public:
 
     static void InitIdCounter(int value);
 
+
     bool addIntAttribute(const QString& key, int x);
     bool addFloatAttribute(const QString& key, float x);
     bool addStringAttribute(const QString& key, const QString& s);
@@ -34,6 +35,19 @@ public:
      * */
     int getId() const { return id; }
 
+    const std::map<QString,QString>& getStringAttributes() const {return stringAttributes;}
+    const std::map<QString,int>& getIntAttributes() const {return intAttributes;}
+    const std::map<QString,float>& getFloatAttributes() const {return floatAttributes;}
+
+    const QString& getStringAttribute(const QString& key) const {return stringAttributes.at(key);}
+    const int getIntAttribute(const QString& key) const {return intAttributes.at(key);}
+    const float getFloatAttribute(const QString& key) const {return floatAttributes.at(key);}
+
+    void setStringAttributes(const std::map<QString,QString>& m){stringAttributes = m;}
+    void setIntAttributes(const std::map<QString,int>& m){intAttributes = m;}
+    void setFloatAttributes(const std::map<QString,float>& m){floatAttributes = m;}
+
+    void setId(int id_){id = id_;}
 
 };
 

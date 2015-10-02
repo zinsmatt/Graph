@@ -18,6 +18,7 @@ private:
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    QGraphicsScene& getScene(){return scene;}
 
 };
 
