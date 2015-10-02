@@ -1,6 +1,8 @@
 #include "node.h"
+#include <iostream>
 
 Node::Node(float x, float y, const QString& printId, unsigned int numero, unsigned int radius, const QString& color)
+    : Element(), pen(QPen(QColor(Qt::black))), brush(QBrush(QColor(color)))
 {
     Element::addStringAttribute("printId", printId);
     Element::addIntAttribute("numero", numero);
@@ -9,10 +11,6 @@ Node::Node(float x, float y, const QString& printId, unsigned int numero, unsign
     Element::addStringAttribute("color", color);
     Element::addFloatAttribute("x",x);
     Element::addFloatAttribute("y",y);
-
-    pen.setColor(Qt::red);
-    brush.setColor(Qt::blue);
-    pen.setWidth(10);
 }
 
 Node::Node(const Node& n) : Element()
@@ -21,4 +19,6 @@ Node::Node(const Node& n) : Element()
     setStringAttributes(n.getStringAttributes());
     setFloatAttributes(n.getFloatAttributes());
     setId(n.getId());
+    pen = n.getPen();
+    brush = n.getBrush();
 }

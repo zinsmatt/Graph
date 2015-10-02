@@ -5,7 +5,6 @@
 #include <QPainter>
 #include <QStyleOptionGraphicsItem>
 #include <QPen>
-#include <iostream>
 #include "edge.h"
 
 
@@ -25,21 +24,12 @@ public:
         edges.push_back(e);
     }
 
-    void addNode(float x, float y, const QString& printId, unsigned int numero, unsigned int radius, const QString& color)
-    {
-        nodes.push_back(Node(x,y,printId,numero,radius,color));
-    }
+    void addNode(float x, float y, const QString& printId, unsigned int numero, unsigned int radius,
+                 const QString& color);
 
     unsigned int size() const {return nodes.size();}
 
-    void draw(QGraphicsScene& scene)
-    {
-        for(auto it : nodes)
-        {
-            it.setItem(scene.addEllipse(it.getX(), it.getY(), 25,25, QPen(Qt::green), it.getBrush()));
-            scene.addItem(&it.getItem());
-        }
-    }
+    void draw(QGraphicsScene& scene);
 
 };
 

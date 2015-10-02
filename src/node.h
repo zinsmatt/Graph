@@ -22,8 +22,8 @@ public:
     float getY() const {return Element::getFloatAttribute("y");}
     QGraphicsEllipseItem& getItem() {return *item;}
 
-    void setPen(const QPen& p){pen = p;}
-    void setBrush(const QBrush& b){brush = b;}
+    void setPen(QPen& p){pen = p;}
+    void setBrush(QBrush& b){brush = b;}
     const QPen& getPen() const {return pen;}
     const QBrush& getBrush() const {return brush;}
 };
