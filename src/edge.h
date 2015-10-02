@@ -2,7 +2,7 @@
 #define EDGE_H
 #include "node.h"
 
-class Edge
+class Edge : public Element
 {
     Node *nodes[2];     //!< nodes linked by the edge. If oriented allways from nodes[0] to nodes[1]
     bool oriented;
@@ -40,7 +40,7 @@ public:
     /* \brief Get nodes[0]
      * \return a pointer to the node
      * */
-    Node* getNode1(Node *n) const { return nodes[0]; }
+    Node* getNode1() const { return nodes[0]; }
 
     /* \brief Get nodes[1]
      * \return a pointer to the node

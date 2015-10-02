@@ -1,6 +1,6 @@
 #include "incidencematrix.h"
 
-IncidenceMatrix::IncidenceMatrix()
+IncidenceMatrix::IncidenceMatrix(int rows, int columns) : Matrix(rows, columns), GraphContainer()
 {
 
 }

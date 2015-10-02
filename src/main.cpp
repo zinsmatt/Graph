@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <iostream>
-#include "squarematrix.h"
+//#include "squarematrix.h"
+#include "adjacencymatrix.h"
 #include "mainwindow.h"
 
 using namespace std;
@@ -14,7 +15,7 @@ int main(int argc, char *argv[])
 
 
     std::cout << "LOSC" << std::endl;
-
+/*
 
     Matrix<int> m(2,2);
 
@@ -28,7 +29,11 @@ int main(int argc, char *argv[])
     square.set(1,1,'x');
 
     cout << "Square Matrix = \n" << square << endl;
-
+*/
+    AdjacencyMatrix adj(3);
+    cout << adj << endl;
+//TODO initialisation adjacency Matrix avec les nodes
+//TODO type de retour de MAtrix::get(x,y)
 
     return a.exec();
 }

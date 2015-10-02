@@ -30,6 +30,21 @@ public:
     }
 
     /* \brief Constructor
+     * \param nb of rows and columns and an initial value
+     * */
+    Matrix(int rows, int cols, Type initValue) : nbRows(rows), nbCols(cols)
+    {
+        for(int iter=0; iter<nbRows; iter++)
+        {
+            matrix.push_back(std::vector<Type>());
+            for(int iter2=0;iter2<nbCols;iter2++)
+            {
+                matrix[iter].push_back(initValue);
+            }
+        }
+    }
+
+    /* \brief Constructor
      * \param nb of rows and columns, init values
      * */
     Matrix(int rows, int cols, Type* tab) : nbRows(rows), nbCols(cols){
@@ -70,6 +85,29 @@ public:
      * \return the number of columns
      * */
     int getNbCols() const { return nbCols; }
+
+    /* \brief Add a column
+     * \param init value
+     * */
+    void addRow(Type initValue){
+        matrix.push_back(std::vector<Type>());
+        nbRows++;
+        for(int iter=0; iter<nbCols; iter++)
+        {
+            matrix[nbRows-1].push_back(initValue);
+        }
+    }
+
+    /* \brief Add a row
+     * \param init value
+     * */
+    void addColumn(Type initValue){
+        for(int iter=0; iter<nbRows; iter++)
+        {
+            matrix[iter].push_back(initValue);
+        }
+        nbCols++;
+    }
 };
 
 

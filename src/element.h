@@ -29,6 +29,12 @@ public:
     bool removeFloatAttribute(const QString& s);
     bool removeStringAttribute(const QString& s);
 
+
+    /* \brief Getter for the id
+     * */
+    int getId() const { return id; }
+
+
 };
 
 

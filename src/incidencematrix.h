@@ -1,11 +1,14 @@
 #ifndef INCIDENCEMATRIX_H
 #define INCIDENCEMATRIX_H
+#include "matrix.h"
+#include "graphcontainer.h"
 
 
-class IncidenceMatrix : private Matrix, public GraphContainer
+//FAUSSE pour l'instant
+class IncidenceMatrix : private Matrix<int>, public GraphContainer
 {
 public:
-    IncidenceMatrix();
+    IncidenceMatrix(int rows, int columns);
     ~IncidenceMatrix();
 };
 
