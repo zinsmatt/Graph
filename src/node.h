@@ -5,11 +5,10 @@
 #include <QGraphicsEllipseItem>
 #include <QPen>
 
-class Node : public Element
+class Node : public Element, public QGraphicsEllipseItem
 {
 private:
-    QGraphicsEllipseItem* item;
-    QPen pen;
+    //QGraphicsEllipseItem* item;
     QBrush brush;
 
 public:
@@ -17,15 +16,15 @@ public:
 
     Node(){}
     Node(const Node& n);
-    void setItem(QGraphicsEllipseItem* it){item = it;}
     float getX() const {return Element::getFloatAttribute("x");}
     float getY() const {return Element::getFloatAttribute("y");}
-    QGraphicsEllipseItem& getItem() {return *item;}
+   // void setItem(QGraphicsEllipseItem* it){item = it;}
+   // QGraphicsEllipseItem& getItem() {return *item;}
 
-    void setPen(QPen& p){pen = p;}
     void setBrush(QBrush& b){brush = b;}
-    const QPen& getPen() const {return pen;}
     const QBrush& getBrush() const {return brush;}
+
+    void printPosition();
 };
 
 #endif // NODE_H

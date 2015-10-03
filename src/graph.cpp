@@ -14,11 +14,19 @@ void Graph::addNode(float x, float y, const QString& printId, unsigned int numer
 
 void Graph::draw(QGraphicsScene& scene)
 {
+    Node* n = &nodes.at(0);
+    n->setFlag(QGraphicsItem::ItemIsSelectable);
+    n->setFlag(QGraphicsItem::ItemIsMovable);
 
+    dynamic_cast<QGraphicsEllipseItem*>(n)->setBrush(QBrush(Qt::red));
+    scene.addItem(n);
+    /*
     for(auto it : nodes)
     {
-       it.setItem(scene.addEllipse(it.getX(), it.getY(), 25, 25, it.getPen(), it.getBrush()));
-       it.getItem().setFlag(QGraphicsItem::ItemIsSelectable);
-       it.getItem().setFlag(QGraphicsItem::ItemIsMovable);
-    }
+        //it = scene.addEllipse(it.getX(), it.getY(), 25, 25, it.getPen(), it.getBrush());
+        scene.addItem(&it);
+//       it.getItem().setFlag(QGraphicsItem::ItemIsSelectable);
+//       it.getItem().setFlag(QGraphicsItem::ItemIsMovable);
+
+    }*/
 }

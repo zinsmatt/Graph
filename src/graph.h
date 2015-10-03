@@ -31,6 +31,13 @@ public:
 
     void draw(QGraphicsScene& scene);
 
+    void printInfo(){
+        for(auto i : nodes)
+        {
+            i.printPosition();
+        }
+    }
+
 };
 
 #endif // GRAPH_H
