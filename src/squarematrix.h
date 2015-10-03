@@ -30,7 +30,7 @@ public:
     ~SquareMatrix() {}
     /* \brief Return the size
      * */
-    int size() const { return this->getNbRows(); }
+    int size() const { return this->Matrix<Type>::getNbRows(); }
 
     /* \brief Extend the matrix
      * \param init value for the added column and row
@@ -44,7 +44,7 @@ public:
      * \param coordinates
      * \return a reference to the value stored in the matrix
      * */
-    Type& get(int x, int y) { return this->get(x,y); }
+    Type& get(int x, int y) { return this->Matrix<Type>::get(x,y); }
 
     /* \brief setter that adapt a Matrix method
      * \param coordinates and the value

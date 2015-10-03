@@ -14,6 +14,8 @@ AdjacencyMatrix::~AdjacencyMatrix()
 
 bool AdjacencyMatrix::addNode(Node* n)
 {
+    if(!n)
+        return false;
     if(idToIndex.find(n->getId()) != idToIndex.end())
         return false;   //node is already in the matrix
     idToIndex[n->getId()] = this->size();
@@ -28,7 +30,7 @@ std::ostream& operator<<(std::ostream& os, AdjacencyMatrix& m)
     for(int i=0; i<m.size(); i++)
     {
         for(int j=0;j<m.size(); j++)
-            os<<m.get(i,j).getId();
+            os<<(void*)m.get(i,j)<<" ";
         os<<"\n";
     }
     return os;

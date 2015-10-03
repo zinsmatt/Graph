@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    MainWindow win;
+  /*  MainWindow win;
 
     Graph g;
     g.addNode(50.0,50.0,"A",0,20,"blue");
@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 
 
     win.show();
-
+*/
 
 /*
     std::cout << "LOSC" << std::endl;
@@ -41,7 +41,13 @@ int main(int argc, char *argv[])
 */
 
     AdjacencyMatrix adj(3);
-   // cout << adj << endl;
+   cout << adj << endl;
+
+   Node *n1 = new Node();
+
+
+   adj.addNode(n1);
+   cout << adj << endl;
 //TODO initialisation adjacency Matrix avec les nodes
 //TODO type de retour de MAtrix::get(x,y)
 

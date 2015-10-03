@@ -17,13 +17,13 @@ public:
 
     bool addNode(Node* n);
 
-    int size() const { return this->size(); }
+    int size() const { return this->SquareMatrix<Edge*>::size(); }
 
     /* \brief getter that adapt a SquareMatrix method
      * \param coordinates
      * \return a reference to the value stored in the matrix
      * */
-    Edge& get(int x, int y) { return this->get(x,y); }
+    Edge*& get(int x, int y) { return this->SquareMatrix<Edge*>::get(x,y); }
 };
 
 
