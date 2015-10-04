@@ -5,11 +5,25 @@ AdjacencyMatrix::AdjacencyMatrix(int size, Edge* initValue) : SquareMatrix(size,
 
 }
 
+AdjacencyMatrix::AdjacencyMatrix() : SquareMatrix(0), GraphContainer()
+{
+
+}
+
 AdjacencyMatrix::~AdjacencyMatrix()
 {
 
 }
 
+int AdjacencyMatrix::getNodeIndex(Node *n)
+{
+    if(!n)
+        return -1;
+    if(idToIndex.find(n->getId()) == idToIndex.end())
+        return -1;
+    else
+        return idToIndex[n->getId()];
+}
 
 
 bool AdjacencyMatrix::addNode(Node* n)
@@ -24,13 +38,68 @@ bool AdjacencyMatrix::addNode(Node* n)
 }
 
 
+bool AdjacencyMatrix::addEdge(Edge* edge)
+{
+    Node* n1 = edge->getNode1();
+    Node* n2 = edge->getNode2();
+    if(!edge || !n1 || !n2)
+        return false;
+
+    int idx1 = getNodeIndex(n1);
+    int idx2 = getNodeIndex(n2);
+    if(idx1==-1 || idx2==-1)
+        return false;   //a node does not exist
+    this->SquareMatrix<Edge*>::set(idx1, idx2,edge);
+    if(!edge->isOriented())
+        this->SquareMatrix<Edge*>::set(idx2, idx1, edge);
+    return true;
+}
+
+bool AdjacencyMatrix::removeEdge(Edge* edge)
+{
+    Node* n1 = edge->getNode1();
+    Node* n2 = edge->getNode2();
+    if(!edge || !n1 || !n2)
+        return false;
+    if(!getEdge(n1,n2))
+        return false;   //the edge is not in the matrix
+
+    int idx1 = getNodeIndex(n1);
+    int idx2 = getNodeIndex(n2);
+    if(idx1==-1 || idx2==-1)
+        return false;   //a node does not exist
+
+    this->SquareMatrix<Edge*>::set(idx1, idx2, NULL);
+    if(!edge->isOriented())
+        this->SquareMatrix<Edge*>::set(idx2, idx1, NULL);
+    return true;
+}
+
+Edge* AdjacencyMatrix::getEdge(Node *n1, Node *n2)
+{
+    if(!n1 || !n2)
+        return NULL;
+    int idx1 = getNodeIndex(n1);
+    int idx2 = getNodeIndex(n2);
+    if(idx1 == -1 || idx2 == -1)
+        return false;    // a node does not exist
+
+    return this->SquareMatrix<Edge*>::get(idx1, idx2);
+}
+
+
 std::ostream& operator<<(std::ostream& os, AdjacencyMatrix& m)
 {
-    os << "Adjacency MAtrix : \n";
+    os << "Adjacency Matrix : \n";
     for(int i=0; i<m.size(); i++)
     {
         for(int j=0;j<m.size(); j++)
-            os<<(void*)m.get(i,j)<<" ";
+        {
+            if(m.get(i,j) == NULL)
+                os << "0 ";
+            else
+                os<<m.get(i,j)->getId()<<" ";
+        }
         os<<"\n";
     }
     return os;

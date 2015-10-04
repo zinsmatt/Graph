@@ -17,7 +17,7 @@ void Element::InitIdCounter(int value)
 
 Element::Element()
 {
-
+    id = idCounter++;
 }
 
 Element::~Element()

@@ -8,6 +8,9 @@
 template <class Type>
 class SquareMatrix : private Matrix<Type>
 {
+
+
+
 public:
 
     /* \brief Constructor
@@ -49,7 +52,7 @@ public:
     /* \brief setter that adapt a Matrix method
      * \param coordinates and the value
      * */
-    void set(int x, int y, const Type& value) { this->set(x,y,value); }
+    void set(int x, int y, const Type& value) { this->Matrix<Type>::set(x,y,value); }
 
 
 
