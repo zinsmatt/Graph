@@ -61,8 +61,12 @@ int main(int argc, char *argv[])
    adj.removeEdge(ret);
 
    cout << adj << endl;
-   //TODO initialisation adjacency Matrix avec les nodes
 
+   adj.removeNode(n1);
+
+   cout << adj << endl;
+   //TODO initialisation adjacency Matrix avec les nodes
+   // TODO removeNode a tester
 
     return a.exec();
 }

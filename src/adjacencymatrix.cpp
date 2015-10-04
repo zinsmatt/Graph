@@ -37,6 +37,23 @@ bool AdjacencyMatrix::addNode(Node* n)
     return true;
 }
 
+bool AdjacencyMatrix::removeNode(Node *node)
+{
+    if(!node)
+        return false;
+    int idx = getNodeIndex(node);
+    if(idx == -1)
+        return -1;      //node is not in the matrix
+    this->SquareMatrix<Edge*>::shrink(idx);
+    idToIndex.erase(node->getId());
+    for(auto it = idToIndex.begin(); it != idToIndex.end(); it++)
+    {
+        if(it->second > idx)
+            it->second--;
+    }
+    return true;
+}
+
 
 bool AdjacencyMatrix::addEdge(Edge* edge)
 {

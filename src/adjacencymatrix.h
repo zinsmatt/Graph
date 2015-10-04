@@ -40,6 +40,8 @@ public:
      * */
     bool addNode(Node* n);
 
+    bool removeNode(Node* node);
+
     /* \brief Add an edge to the matrix
      * \param a pointer to the edge
      * \return true if added, else false

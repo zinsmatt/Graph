@@ -43,6 +43,14 @@ public:
         this->addColumn(initValue);
     }
 
+    /* \brief Shrink the matrix
+     * \param index of the row and column to remove
+     * \return boolean
+     * */
+    bool shrink(int index){
+        return this->suppressColumn(index) && this->suppressRow(index);
+    }
+
     /* \brief getter that adapt a Matrix method
      * \param coordinates
      * \return a reference to the value stored in the matrix
