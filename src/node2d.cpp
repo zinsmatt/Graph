@@ -1,7 +1,9 @@
 #include "node2d.h"
+#include <iostream>
 
-Node2D::Node2D(float x, float y, float radius_, float border_, const QString& fillColor_) : radius(radius_),
-    border(border_), fillColor(QColor(fillColor_))
+Node2D::Node2D(const QString& label_, float x, float y, float radius_, float border_, const QString& fillColor_) :
+    radius(radius_), border(border_), fillColor(QColor(fillColor_)), label(label_), posLabel(x+radius*.75,
+                                                                                             y+radius*1.25)
 {
     setPos(x, y);
     setFlag(QGraphicsItem::ItemIsMovable);
@@ -21,5 +23,13 @@ void Node2D::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
     painter->setPen(pen);
     painter->setBrush(QBrush(fillColor));
     painter->drawEllipse(rect);
+    QFont font("Arial", 25,10);
+    painter->setFont(font);
+    painter->drawText(posLabel,label);
+}
+
+void Node2D::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    std::cout << x() << " " << y() << std::endl;
 }
 

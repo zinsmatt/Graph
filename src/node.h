@@ -10,7 +10,7 @@ private:
 
 
 public:
-    Node(float x, float y, float radius, float border, const QString color);
+    Node(const QString& label_, float x, float y, float radius, float border, const QString color);
     Node(){}
 
     Node2D& getNode2D() {return *node2d;}

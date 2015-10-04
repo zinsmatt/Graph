@@ -24,7 +24,11 @@ public:
         edges.push_back(e);
     }
 
-    void addNode(float x, float y, float radius, float border, const QString &color);
+    void addNode(const QString &label, float x, float y, float radius, float border, const QString &color);
+    void addEdge(Node* n1, Node* n2, bool oriented, const QString &color);
+
+
+    std::vector<Node>& getNodes(){return nodes;}
 
     unsigned int size() const {return nodes.size();}
 
