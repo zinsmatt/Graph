@@ -29,7 +29,8 @@ SOURCES += \
     src/graphcontainer.cpp \
     src/adjacencymatrix.cpp \
     src/incidencematrix.cpp \
-    src/successorlist.cpp
+    src/successorlist.cpp \
+    src/node2d.cpp
 
 SUBDIRS += \
     src/Graph.pro
@@ -48,7 +49,8 @@ HEADERS += \
     src/graphcontainer.h \
     src/adjacencymatrix.h \
     src/incidencematrix.h \
-    src/successorlist.h
+    src/successorlist.h \
+    src/node2d.h
 
 FORMS += \
     src/mainwindow.ui

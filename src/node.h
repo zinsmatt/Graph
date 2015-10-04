@@ -1,30 +1,20 @@
 #ifndef NODE_H
 #define NODE_H
 #include "element.h"
-#include <QColor>
-#include <QGraphicsEllipseItem>
-#include <QPen>
+#include "node2d.h"
 
-class Node : public Element, public QGraphicsEllipseItem
+class Node : public Element
 {
 private:
-    //QGraphicsEllipseItem* item;
-    QBrush brush;
+    Node2D* node2d;
+
 
 public:
-    Node(float x, float y, const QString& printId, unsigned int numero, unsigned int radius, const QString& color);
-
+    Node(float x, float y, float radius, float border, const QString color);
     Node(){}
-    Node(const Node& n);
-    float getX() const {return Element::getFloatAttribute("x");}
-    float getY() const {return Element::getFloatAttribute("y");}
-   // void setItem(QGraphicsEllipseItem* it){item = it;}
-   // QGraphicsEllipseItem& getItem() {return *item;}
 
-    void setBrush(QBrush& b){brush = b;}
-    const QBrush& getBrush() const {return brush;}
+    Node2D& getNode2D() {return *node2d;}
 
-    void printPosition();
 };
 
 #endif // NODE_H

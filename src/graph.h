@@ -24,19 +24,11 @@ public:
         edges.push_back(e);
     }
 
-    void addNode(float x, float y, const QString& printId, unsigned int numero, unsigned int radius,
-                 const QString& color);
+    void addNode(float x, float y, float radius, float border, const QString &color);
 
     unsigned int size() const {return nodes.size();}
 
     void draw(QGraphicsScene& scene);
-
-    void printInfo(){
-        for(auto i : nodes)
-        {
-            i.printPosition();
-        }
-    }
 
 };
 

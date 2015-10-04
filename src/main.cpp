@@ -4,6 +4,7 @@
 #include "adjacencymatrix.h"
 #include "mainwindow.h"
 #include "graph.h"
+#include "node2d.h"
 
 using namespace std;
 
@@ -14,19 +15,10 @@ int main(int argc, char *argv[])
     MainWindow win;
 
     Graph g;
-    g.addNode(50.0,50.0,"A",0,20,"blue");
+    g.addNode(0, 0, 25, 2, "blue");
     g.draw(win.getScene());
-    Node* n = new Node(25,25,"e",2,25,"e");
-    /*
-    QBrush b(Qt::red);
-    dynamic_cast<QGraphicsEllipseItem*>(n)->QGraphicsEllipseItem::setBrush(b);
-    win.getScene().addItem(n);*/
 
-   /* QGraphicsEllipseItem item(25,25,25,25);
-    item.setFlag(QGraphicsItem::ItemIsMovable);
-    item.setBrush(QBrush(Qt::red));
-    win.getScene().addItem(&item);
-*/
+
     win.show();
 
 
