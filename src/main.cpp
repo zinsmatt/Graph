@@ -4,6 +4,7 @@
 #include "adjacencymatrix.h"
 #include "mainwindow.h"
 #include "graph.h"
+#include "node2d.h"
 
 using namespace std;
 
@@ -14,9 +15,10 @@ int main(int argc, char *argv[])
   /*  MainWindow win;
 
     Graph g;
-    g.addNode(50.0,50.0,"A",0,20,"blue");
+    g.addNode("A", 0, 0, 25, 2, "blue");
+    g.addNode("B", 100, 50, 25, 2, "yellow");
+    g.addEdge(&g.getNodes().at(0), &g.getNodes().at(1), false, "black" );
     g.draw(win.getScene());
-
 
 
     win.show();
