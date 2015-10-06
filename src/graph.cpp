@@ -13,6 +13,7 @@ void Graph::addNode(const QString& label, float x, float y, float radius, float 
 void Graph::addEdge(Node *n1, Node *n2, bool oriented, const QString &color)
 {
     edges.push_back(Edge(n1, n2, oriented, color));
+
 }
 
 

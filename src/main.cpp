@@ -17,8 +17,15 @@ int main(int argc, char *argv[])
     Graph g;
     g.addNode("A", 0, 0, 25, 2, "blue");
     g.addNode("B", 100, 50, 25, 2, "yellow");
+    /*
+    QPen pen(QColor(Qt::black), 5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+
+    QLine line(g.getNodes().at(0).getNode2D().x(), g.getNodes().at(0).getNode2D().y(),
+               g.getNodes().at(1).getNode2D().x(), g.getNodes().at(1).getNode2D().y());
+    win.getScene().addLine(line, pen);*/
     g.addEdge(&g.getNodes().at(0), &g.getNodes().at(1), false, "black" );
     g.draw(win.getScene());
+
 
 
     win.show();
