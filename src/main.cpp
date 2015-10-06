@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    MainWindow win;
+  /*  MainWindow win;
 
     Graph g;
     g.addNode("A", 0, 0, 25, 2, "blue");
@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 
 
     win.show();
-
+*/
 
 /*
     std::cout << "LOSC" << std::endl;
@@ -49,11 +49,33 @@ int main(int argc, char *argv[])
     cout << "Square Matrix = \n" << square << endl;
 */
 
-    AdjacencyMatrix adj(3);
-   // cout << adj << endl;
-//TODO initialisation adjacency Matrix avec les nodes
-//TODO type de retour de MAtrix::get(x,y)
+    AdjacencyMatrix adj;
+   cout << adj << endl;
 
+   Node *n1 = new Node();
+   Node *n2 = new Node();
+
+
+   adj.addNode(n1);
+   adj.addNode(n2);
+   cout << adj << endl;
+
+   Edge *e1 = new Edge(n1,n2,false);
+   adj.addEdge(e1);
+   cout << adj<<endl;
+
+   Edge *ret = adj.getEdge(n2,n1);
+   cout << "ret id = "<<ret->getId()<<endl;
+
+   adj.removeEdge(ret);
+
+   cout << adj << endl;
+
+   adj.removeNode(n1);
+
+   cout << adj << endl;
+   //TODO initialisation adjacency Matrix avec les nodes
+   // TODO removeNode a tester
 
     return a.exec();
 }

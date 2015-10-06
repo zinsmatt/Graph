@@ -59,6 +59,37 @@ public:
         }
     }
 
+    /* \brief Suppress a row
+     * \param index of the row to remove
+     * \return boolean
+     * */
+    bool suppressRow(int row){
+        if(row>=nbRows)
+            return false;
+        typename std::vector<std::vector<Type> >::iterator it = matrix.begin();
+        for(int i=0;i<row;i++)  it++;
+        matrix.erase(it);
+        nbRows--;
+        return true;
+    }
+
+    /* \brief Suppress a column
+     * \param index of the column to remove
+     * \return boolean
+     * */
+    bool suppressColumn(int col){
+        if(col>=nbCols)
+            return false;
+        for(int row=0; row<nbRows; row++)
+        {
+            typename std::vector<Type>::iterator it = matrix[row].begin();
+            for(int i=0;i<col;i++)  it++;
+            matrix[row].erase(it);
+        }
+        nbCols--;
+        return true;
+    }
+
     /* \brief Destructor
      * \param nb of rows and columns
      * */
