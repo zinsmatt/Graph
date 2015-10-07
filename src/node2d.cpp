@@ -1,5 +1,6 @@
 #include "node2d.h"
 #include <iostream>
+#include <QStyleOptionGraphicsItem>
 
 Node2D::Node2D(const QString& label_, float x, float y, float radius_, float border_, const QString& fillColor_) :
     radius(radius_), border(border_), fillColor(QColor(fillColor_)), label(label_), posLabel(x+radius*.75,
@@ -18,6 +19,8 @@ QRectF Node2D::boundingRect() const
 
 void Node2D::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    painter->setClipRect( option->exposedRect );
+
     QRectF rect = boundingRect();
     QPen pen(Qt::red, border);
     painter->setPen(pen);
