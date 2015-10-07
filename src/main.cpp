@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
    adj.addNode(n2);
    cout << adj << endl;
 
-   Edge *e1 = new Edge(n1,n2,false);
+   Edge *e1 = new Edge(n1,n2,false,"");
    adj.addEdge(e1);
    cout << adj<<endl;
 
