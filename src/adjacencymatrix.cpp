@@ -104,21 +104,28 @@ Edge* AdjacencyMatrix::getEdge(Node *n1, Node *n2)
     return this->SquareMatrix<Edge*>::get(idx1, idx2);
 }
 
+QString AdjacencyMatrix::toString() const
+{
+    std::stringstream is;
+    is << "Adjacency Matrix : \n";
+    for(int i=0; i<this->size(); i++)
+    {
+        for(int j=0;j<this->size(); j++)
+        {
+            if(this->get(i,j) == NULL)
+                is << "0 ";
+            else
+                is <<this->get(i,j)->getId()<<" ";
+        }
+        is<<"\n";
+    }
+    return is.str().c_str();
+}
+
 
 std::ostream& operator<<(std::ostream& os, AdjacencyMatrix& m)
 {
-    os << "Adjacency Matrix : \n";
-    for(int i=0; i<m.size(); i++)
-    {
-        for(int j=0;j<m.size(); j++)
-        {
-            if(m.get(i,j) == NULL)
-                os << "0 ";
-            else
-                os<<m.get(i,j)->getId()<<" ";
-        }
-        os<<"\n";
-    }
+    os << m.toString().toStdString();
     return os;
 }
 

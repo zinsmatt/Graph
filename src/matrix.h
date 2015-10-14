@@ -101,6 +101,12 @@ public:
      * */
     Type& get(int x, int y) { return matrix[x][y]; }
 
+    /* \brief const getter
+     * \param coordinates
+     * \return a const reference to the value stored in the matrix
+     * */
+    const Type& get(int x, int y) const { return matrix[x][y]; }
+
     /* \brief setter
      * \param coordinates and the value
      * */

@@ -1,15 +1,26 @@
 #ifndef ADJACENCYMATRIX_H
 #define ADJACENCYMATRIX_H
+#include <map>
 #include "edge.h"
 #include "squarematrix.h"
 #include "graphcontainer.h"
-#include <map>
-
 
 class AdjacencyMatrix : private SquareMatrix<Edge*>, public GraphContainer
 {
 private:
     std::map<int, int> idToIndex;       //!< map between node id and index in the matrix
+
+    /* \brief Direct access to the matrix
+     * \param index
+     * \return a pointer to the edge if it exists, else NULL
+     * */
+    Edge* get(int x,int y) { return this->SquareMatrix<Edge*>::get(x,y); }
+    /* \brief const access to the matrix
+     * \param index
+     * \return a const pointer to the edge if it exists, else NULL
+     * */
+    const Edge* get(int x,int y) const { return this->SquareMatrix<Edge*>::get(x,y); }
+
 
 public:
     /* just for tests*/
@@ -38,34 +49,32 @@ public:
      * \param a pointer to the node
      * \return true if added, false if not added
      * */
-    bool addNode(Node* n);
+    virtual bool addNode(Node* n);
 
-    bool removeNode(Node* node);
+
+    /* \brief Remove a node from the matrix
+     * \param a pointer to the node to remove
+     * \return true if removed, false if does not exist
+     * */
+    virtual bool removeNode(Node* node);
 
     /* \brief Add an edge to the matrix
      * \param a pointer to the edge
      * \return true if added, else false
      * */
-    bool addEdge(Edge *edge);
+    virtual bool addEdge(Edge *edge);
 
     /* \brief Remove an edge from the matrix
      * \param a pointer to the edge to remove
      * \return true if removed, false if does not exist
      * */
-    bool removeEdge(Edge *edge);
+    virtual bool removeEdge(Edge *edge);
 
     /* \brief Get an edge
      * \param two pointers to the nodes
      * \return a pointeur to the edge if it exists, else NULL
      * */
-    Edge* getEdge(Node* n1, Node *n2);
-
-
-    /* \brief Direct access to the matrix
-     * \param index
-     * \return a pointer to the edge if it exists, else NULL
-     * */
-    Edge* get(int x,int y) { return this->SquareMatrix<Edge*>::get(x,y); }
+    virtual Edge* getEdge(Node* n1, Node *n2);
 
     /* \brief Get the matrix only
      * \return a reference to the square matrix
@@ -76,10 +85,14 @@ public:
      * */
     int size() const { return this->SquareMatrix<Edge*>::size(); }
 
+    /* \brief Get a string that describes the object
+     * \return an QString containing the description
+     * */
+    virtual QString toString() const;
 };
 
 
-/* \brief operator << to ouput a squareMatrix
+/* \brief operator << to ouput an adjacency matrix
  * \param output stream and a reference to the matrix
  * \return a reference to the stream
  * */

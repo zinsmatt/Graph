@@ -57,6 +57,12 @@ public:
      * */
     Type& get(int x, int y) { return this->Matrix<Type>::get(x,y); }
 
+    /* \brief const getter that adapt a Matrix method
+     * \param coordinates
+     * \return a const reference to the value stored in the matrix
+     * */
+    const Type& get(int x, int y) const { return this->Matrix<Type>::get(x,y); }
+
     /* \brief setter that adapt a Matrix method
      * \param coordinates and the value
      * */
