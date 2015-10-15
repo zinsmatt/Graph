@@ -63,9 +63,11 @@ int main(int argc, char *argv[])
    g.addNode(n1);
    g.addNode(n2);
 
-   Edge *e1 = new Edge(n1,n2,false,"");
+   Edge *e1 = new Edge(n1,n2,true,"");
+   Edge *e2 = new Edge(n2,n1,true,"");
 
    g.addEdge(e1);
+   g.addEdge(e2);
 
    cout << g << endl;
 

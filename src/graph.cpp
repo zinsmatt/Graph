@@ -43,6 +43,7 @@ void Graph::draw(QGraphicsScene& scene)
 std::ostream& operator<<(std::ostream& os, Graph& g)
 {
     os << "====== Graph =====\n\n";
-    if(g.getContainer())    os << g.getContainer()->toString() << std::endl;
+    if(g.getContainer())
+        os << g.getContainer()->toString().toStdString() << std::endl;
     return os;
 }
