@@ -21,7 +21,7 @@ public:
     /* \brief Constructor
      * \param size of the matrix and an initial value
      * */
-    SquareMatrix(int size, Type initValue) : Matrix<Type>(size, size, initValue) {}
+    SquareMatrix(int size, const Type& initValue) : Matrix<Type>(size, size, initValue) {}
 
     /* \brief Constructor
      * \param size of the matrix and init values
@@ -30,7 +30,7 @@ public:
 
     /* \brief Destructor
      * */
-    ~SquareMatrix() {}
+    virtual ~SquareMatrix() {}
     /* \brief Return the size
      * */
     int size() const { return this->Matrix<Type>::getNbRows(); }
@@ -38,7 +38,7 @@ public:
     /* \brief Extend the matrix
      * \param init value for the added column and row
      * */
-    void extend(Type initValue){
+    void extend(const Type& initValue){
         this->addRow(initValue);
         this->addColumn(initValue);
     }

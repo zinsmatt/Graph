@@ -26,13 +26,13 @@ int AdjacencyMatrix::getNodeIndex(Node *n)
 }
 
 
-bool AdjacencyMatrix::addNode(Node* n)
+bool AdjacencyMatrix::addNode(Node* node)
 {
-    if(!n)
+    if(!node)
         return false;
-    if(idToIndex.find(n->getId()) != idToIndex.end())
+    if(idToIndex.find(node->getId()) != idToIndex.end())
         return false;   //node is already in the matrix
-    idToIndex[n->getId()] = this->size();
+    idToIndex[node->getId()] = this->size();
     this->extend(NULL); //add a row and a column
     return true;
 }

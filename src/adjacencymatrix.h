@@ -15,12 +15,18 @@ private:
      * \return a pointer to the edge if it exists, else NULL
      * */
     Edge* get(int x,int y) { return this->SquareMatrix<Edge*>::get(x,y); }
+
     /* \brief const access to the matrix
      * \param index
      * \return a const pointer to the edge if it exists, else NULL
      * */
     const Edge* get(int x,int y) const { return this->SquareMatrix<Edge*>::get(x,y); }
 
+    /* \brief Get the node index in the matrix
+     * \param a pointer to the node
+     * \return index if the node exist, else -1
+     * */
+    int getNodeIndex(Node *n);
 
 public:
     /* just for tests*/
@@ -36,20 +42,13 @@ public:
 
     /* \brief Destructor
      * */
-    ~AdjacencyMatrix();
-
-    /* \brief Get the node index in the matrix
-     * \param a pointer to the node
-     * \return index if the node exist, else -1
-     * */
-    int getNodeIndex(Node *n);
-
+    virtual ~AdjacencyMatrix();
 
     /* \brief Add a Node to the matrix
      * \param a pointer to the node
      * \return true if added, false if not added
      * */
-    virtual bool addNode(Node* n);
+    virtual bool addNode(Node* node);
 
 
     /* \brief Remove a node from the matrix
@@ -76,19 +75,25 @@ public:
      * */
     virtual Edge* getEdge(Node* n1, Node *n2);
 
+    // TEMPORAIRE PAS UTILE
     /* \brief Get the matrix only
      * \return a reference to the square matrix
      * */
-    SquareMatrix<Edge*>& getMatrix() { return static_cast<SquareMatrix<Edge*>&>(*this); }
+   // SquareMatrix<Edge*>& getMatrix() { return static_cast<SquareMatrix<Edge*>&>(*this); }
 
+    // PAS UTILE getNbNode plutot
     /* \brief Get the size of the matrix
      * */
-    int size() const { return this->SquareMatrix<Edge*>::size(); }
+  //  int size() const { return this->SquareMatrix<Edge*>::size(); }
 
     /* \brief Get a string that describes the object
      * \return an QString containing the description
      * */
     virtual QString toString() const;
+
+    /* \brief Get the number of nodes in the matrix
+     * */
+    int getNbNodes() const { return idToIndex.size(); }
 };
 
 

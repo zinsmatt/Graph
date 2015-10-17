@@ -32,7 +32,7 @@ public:
     /* \brief Constructor
      * \param nb of rows and columns and an initial value
      * */
-    Matrix(int rows, int cols, Type initValue) : nbRows(rows), nbCols(cols)
+    Matrix(int rows, int cols, const Type& initValue) : nbRows(rows), nbCols(cols)
     {
         for(int iter=0; iter<nbRows; iter++)
         {
@@ -58,6 +58,11 @@ public:
             }
         }
     }
+
+    /* \brief Destructor
+     * \param nb of rows and columns
+     * */
+    virtual ~Matrix(){}
 
     /* \brief Suppress a row
      * \param index of the row to remove
@@ -90,11 +95,6 @@ public:
         return true;
     }
 
-    /* \brief Destructor
-     * \param nb of rows and columns
-     * */
-    ~Matrix(){}
-
     /* \brief getter
      * \param coordinates
      * \return a reference to the value stored in the matrix
@@ -110,7 +110,7 @@ public:
     /* \brief setter
      * \param coordinates and the value
      * */
-    void set(int x, int y, const Type& value) { matrix[x][y] = value; }
+    void set(int x, int y,const Type& value) { matrix[x][y] = value; }
 
     /* \brief getter nb rows
      * \return the number of rows
@@ -126,7 +126,7 @@ public:
     /* \brief Add a column
      * \param init value
      * */
-    void addRow(Type initValue){
+    void addRow(const Type& initValue){
         matrix.push_back(std::vector<Type>());
         nbRows++;
         for(int iter=0; iter<nbCols; iter++)
@@ -138,7 +138,7 @@ public:
     /* \brief Add a row
      * \param init value
      * */
-    void addColumn(Type initValue){
+    void addColumn(const Type& initValue){
         for(int iter=0; iter<nbRows; iter++)
         {
             matrix[iter].push_back(initValue);

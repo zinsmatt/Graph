@@ -9,7 +9,7 @@ class IncidenceMatrix : private Matrix<int>, public GraphContainer
 {
 public:
     IncidenceMatrix(int rows, int columns);
-    ~IncidenceMatrix();
+    virtual ~IncidenceMatrix();
 };
 
 #endif // INCIDENCEMATRIX_H

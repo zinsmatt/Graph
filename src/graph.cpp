@@ -1,5 +1,4 @@
 #include "graph.h"
-#include <iostream>
 
 
 Graph::Graph(GraphContainer *gc) : container(gc)
@@ -40,10 +39,17 @@ void Graph::draw(QGraphicsScene& scene)
     }
 }
 
+QString Graph::toString() const
+{
+    // rajouter affichage des attributs du graphe
+    if(container)
+        return container->toString();
+    else
+        return "vide";
+}
 std::ostream& operator<<(std::ostream& os, Graph& g)
 {
     os << "====== Graph =====\n\n";
-    if(g.getContainer())
-        os << g.getContainer()->toString().toStdString() << std::endl;
+    os << g.toString().toStdString() << std::endl;
     return os;
 }

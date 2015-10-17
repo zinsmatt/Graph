@@ -92,12 +92,19 @@ public:
         return container->getEdge(n1,n2);
     }
 
+    /* \brief Get a string description
+     * \return QString describing the graph
+     * */
+    QString toString() const;
+
+
+    // PAS UTILE POUR l INSTANT
     /* \brief Get the container
      * \return a const pointer on the container
      * */
-    const GraphContainer* getContainer() const{
+  /*  const GraphContainer* getContainer() const{
         return container;
-    }
+    }*/
 
 
 };

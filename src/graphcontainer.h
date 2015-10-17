@@ -9,14 +9,14 @@ class GraphContainer
 {
 public:
     GraphContainer();
-    ~GraphContainer();
+    virtual ~GraphContainer();
 
 
     /* \brief Add a node to the container
      * \param a pointer to the node
      * \return true if added, false if not added
      * */
-    virtual bool addNode(Node* n) = 0;
+    virtual bool addNode(Node* node) = 0;
 
     /* \brief Remove a node from the container
      * \param a pointer to the node to remove
