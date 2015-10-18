@@ -14,6 +14,6 @@ Edge::Edge(Node* n1, Node *n2, bool orient, const QString color):
 
 Edge::~Edge()
 {
-
+    delete edge2d;
 }
 

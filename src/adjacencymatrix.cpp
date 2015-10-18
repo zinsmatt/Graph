@@ -98,7 +98,7 @@ bool AdjacencyMatrix::removeEdge(Edge* edge)
     if(idx1==-1 || idx2==-1)
         return false;   //a node does not exist
 
-    // TODO : gerer le delete si necessaire
+    // TODO : gerer le delete si necessaire (fait dans le graph)
 
     this->SquareMatrix<Edge*>::set(idx1, idx2, NULL);
     if(!edge->isOriented())

@@ -32,11 +32,11 @@ void Graph::addEdge(Node *n1, Node *n2, bool oriented, const QString &color)
 
 void Graph::draw(QGraphicsScene& scene)
 {
-    for(int i = 0; i < nodes.size(); ++i)
+    for(unsigned int i = 0; i < nodes.size(); ++i)
     {
         scene.addItem(&nodes[i]->getNode2D());
     }
-    for(int i = 0; i < edges.size(); ++i)
+    for(unsigned int i = 0; i < edges.size(); ++i)
     {
         scene.addItem(&edges[i]->getEdge2D());
     }
@@ -57,10 +57,16 @@ bool Graph::addNode(Node *node)
 
 bool Graph::removeNode(Node *node)
 {
+    if(!node)
+        return false;
+    const std::vector<Edge*>& adjacentEdges = node->getAdjacentEdges();
+    while(adjacentEdges.size()>0)               //remove the adjacent edges first
+        this->removeEdge(adjacentEdges[0]);     //warning removeEdge remove the edge from adjacentEdges
     if(!container->removeNode(node))
         return false;   //remove from container failed
     std::vector<Node*>::iterator pos = std::find(nodes.begin(),nodes.end(),node);
     nodes.erase(pos);
+    delete node;
     return true;
 }
 
@@ -77,17 +83,31 @@ bool Graph::removeEdge(Edge *edge)
     if(!container->removeEdge(edge))
         return false;   //remove from container failed
     std::vector<Edge*>::iterator pos = std::find(edges.begin(),edges.end(),edge);
+    if(pos == edges.end()) return false; //edge was not in the list of edges
     edges.erase(pos);
+    edge->getNode1()->removeAdjacentEdge(edge);     //remove edge from adjacent edges
+    edge->getNode2()->removeAdjacentEdge(edge);     //remove edge from adjacent edges
+    delete edge;
     return true;
 }
 
 QString Graph::toString() const
 {
+    std::stringstream ss;
     // rajouter affichage des attributs du graphe
+    ss << "Nodes : ";
+    for(unsigned int iter = 0;iter <nodes.size();iter++)
+        ss << nodes[iter]->getId() << " ";
+    ss << "\nEdges : ";
+    for(unsigned int iter = 0;iter <edges.size();iter++)
+        ss << edges[iter]->getId() << " ";
+    ss << "\n";
+
     if(container)
-        return container->toString();
+        ss << container->toString().toStdString();
     else
-        return "vide";
+        ss << "vide";
+    return ss.str().c_str();
 }
 std::ostream& operator<<(std::ostream& os, Graph& g)
 {
