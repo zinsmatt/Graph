@@ -12,7 +12,19 @@ AdjacencyMatrix::AdjacencyMatrix() : SquareMatrix(0), GraphContainer()
 
 AdjacencyMatrix::~AdjacencyMatrix()
 {
-
+    for(int edgeIter=0; edgeIter<getNbNodes(); edgeIter++)
+    {
+        for(int edgeIter2=0; edgeIter2<getNbNodes(); edgeIter2++)
+        {
+            Edge* ret = this->get(edgeIter,edgeIter2);
+            if(ret != NULL)
+            {
+                if(ret->isOriented())
+                    set(edgeIter2,edgeIter,NULL);
+                delete ret;
+            }
+        }
+    }
 }
 
 int AdjacencyMatrix::getNodeIndex(Node *n)
@@ -85,6 +97,8 @@ bool AdjacencyMatrix::removeEdge(Edge* edge)
     int idx2 = getNodeIndex(n2);
     if(idx1==-1 || idx2==-1)
         return false;   //a node does not exist
+
+    // TODO : gerer le delete si necessaire
 
     this->SquareMatrix<Edge*>::set(idx1, idx2, NULL);
     if(!edge->isOriented())

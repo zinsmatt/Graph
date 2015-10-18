@@ -31,6 +31,7 @@ public:
     /* \brief Destructor
      * */
     virtual ~SquareMatrix() {}
+
     /* \brief Return the size
      * */
     int size() const { return this->Matrix<Type>::getNbRows(); }

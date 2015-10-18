@@ -13,8 +13,8 @@
 class Graph
 {
 private:
-    std::vector<Node> nodes;
-    std::vector<Edge> edges;
+    std::vector<Node*> nodes;
+    std::vector<Edge*> edges;
 
     GraphContainer* container;
 
@@ -32,18 +32,18 @@ public:
     ~Graph();
 
 
-    void addNode(const Node& n){
+    /*void addNode(const Node& n){
         nodes.push_back(n);
     }
     void addEdge(const Edge& e){
         edges.push_back(e);
-    }
+    }*/
 
     void addNode(const QString &label, float x, float y, float radius, float border, const QString &color);
     void addEdge(Node* n1, Node* n2, bool oriented, const QString &color);
 
 
-    std::vector<Node>& getNodes(){return nodes;}
+ //   std::vector<Node>& getNodes(){return nodes;}
 
     unsigned int size() const {return nodes.size();}
 
@@ -56,33 +56,25 @@ public:
      * \param a pointer to the node
      * \return true if added, false if not added
      * */
-    bool addNode(Node *node){
-        return container->addNode(node);
-    }
+    bool addNode(Node *node);
 
     /* \brief Remove a node from the graph
      * \param a pointer to the node to remove
      * \return true if removed, false if does not exist
      * */
-    bool removeNode(Node *node){
-        return container->removeNode(node);
-    }
+    bool removeNode(Node *node);
 
     /* \brief Add an edge to the graph
      * \param a pointer to the edge
      * \return true if added, else false
      * */
-    bool addEdge(Edge *edge){
-        return container->addEdge(edge);
-    }
+    bool addEdge(Edge *edge);
 
     /* \brief Remove an edge from the graph
      * \param a pointer to the edge to remove
      * \return true if removed, false if does not exist
      * */
-    bool removeEdge(Edge *edge){
-        return container->removeEdge(edge);
-    }
+    bool removeEdge(Edge *edge);
 
     /* \brief Get an edge from the graph
      * \param two pointers to the nodes

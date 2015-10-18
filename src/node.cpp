@@ -9,3 +9,11 @@ Node::Node(const QString &label_, float x, float y, float radius, float border, 
 }
 
 
+bool Node::addAdjacentEdge(Edge *edge)
+{
+    for(std::vector<Edge*>::iterator it = adjacentEdges.begin(); it != adjacentEdges.end(); ++it)
+        if(*it == edge)
+            return false; //already stored
+    adjacentEdges.push_back(edge);
+    return true;
+}

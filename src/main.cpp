@@ -10,7 +10,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+   // QApplication a(argc, argv);
 /*
     MainWindow win;
 
@@ -53,7 +53,6 @@ int main(int argc, char *argv[])
 
 
 
-
  //  AdjacencyMatrix adj;
  //  cout << adj << endl;
 
@@ -70,7 +69,10 @@ int main(int argc, char *argv[])
    g.addEdge(e2);
 
    cout << g << endl;
+   delete n1;
+   delete n2;
 
+    //Matrix<int> *m = new SquareMatrix<int>(5);
 
 
   /* adj.addNode(n1);
@@ -94,6 +96,6 @@ int main(int argc, char *argv[])
    //TODO initialisation adjacency Matrix avec les nodes
    // TODO removeNode a tester
 
-    return a.exec();
+    return 1;//a.exec();
 
 }
