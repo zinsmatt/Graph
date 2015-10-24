@@ -17,3 +17,12 @@ bool Node::addAdjacentEdge(Edge *edge)
     adjacentEdges.push_back(edge);
     return true;
 }
+
+bool Node::removeAdjacentEdge(Edge *edge)
+{
+    auto pos = std::find(adjacentEdges.begin(),adjacentEdges.end(),edge);
+    if(pos == adjacentEdges.end())
+        return false; //edge was not adjacent to this node
+    adjacentEdges.erase(pos);
+    return true;
+}

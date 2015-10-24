@@ -23,6 +23,17 @@ public:
      * */
     bool addAdjacentEdge(Edge* edge);
 
+    /* \brief remove an adjacent edge
+     * \param a pointer to the edge
+     * \return true if removed, false else
+     * */
+    bool removeAdjacentEdge(Edge* edge);
+
+    /* \brief get the adjacent edges liste
+     * \return a const reference to the vector
+     * */
+    const std::vector<Edge *> &getAdjacentEdges() const { return adjacentEdges; }
+
     Node2D& getNode2D() {return *node2d;}
 
 };

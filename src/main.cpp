@@ -59,17 +59,33 @@ int main(int argc, char *argv[])
     /*
    Node *n1 = new Node();
    Node *n2 = new Node();
+   Node *n3 = new Node();
+   Node *n4 = new Node();
 
    g.addNode(n1);
    g.addNode(n2);
+   g.addNode(n3);
+   g.addNode(n4);
 
    Edge *e1 = new Edge(n1,n2,true,"");
    Edge *e2 = new Edge(n2,n1,true,"");
+   Edge *e3 = new Edge(n1,n3,true,"");
+   Edge *e4 = new Edge(n2,n4,true,"");
+   Edge *e5 = new Edge(n3,n4,true,"");
 
    g.addEdge(e1);
    g.addEdge(e2);
+   g.addEdge(e3);
+   g.addEdge(e4);
+   g.addEdge(e5);
 
    cout << g << endl;
+
+   //cout << (int)g.removeEdge(e2)<<endl;
+    g.removeNode(n4);
+
+   cout << g << endl;
+
    delete n1;
    delete n2;
 */
