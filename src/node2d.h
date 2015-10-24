@@ -1,25 +1,36 @@
 #ifndef NODE2D_H
 #define NODE2D_H
 #include <QGraphicsItem>
-#include <QPainter>
+#include <QList>
+
+
+class Edge2D;
+QT_BEGIN_NAMESPACE
+class QGraphicsSceneMouseEvent;
+QT_END_NAMESPACE
 
 class Node2D : public QGraphicsItem
 {
 private:
-    QColor fillColor;
-    float radius;
-    float border;
-    QString label;
-    QPoint posLabel;
+    QList<Edge2D*> edgeList;
+
 
 public:
-    Node2D(const QString &label_, float x, float y, float radius_, float border_, const QString &fillColor_);
+    Node2D();
+    void addEdge(Edge2D *edge);
+
+    QList<Edge2D *> edges() const;
+
     QRectF boundingRect() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QPainterPath shape() const;
+    void paint(QPainter *painter, const
+    QStyleOptionGraphicsItem *option, QWidget *widget);
+
+protected:
+    QVariant itemChange(GraphicsItemChange change, const    QVariant &value);
 
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
-
-    float getRadius() const {return radius;}
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 };
 
 #endif // NODE2D_H

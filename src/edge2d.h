@@ -1,24 +1,31 @@
 #ifndef EDGE2D_H
 #define EDGE2D_H
-#include <QGraphicsLineItem>
-#include <QPainter>
+#include <QGraphicsItem>
 
-class Node;
 
-class Edge2D : public QGraphicsLineItem
+class Node2D;
+
+class Edge2D : public QGraphicsItem
 {
 private:
-    Node* origin;
-    Node* destination;
-    QColor color;
+    Node2D* source;
+    Node2D* dest;
+    QPointF sourcePoint;
+    QPointF destPoint;
+    qreal arrowSize;
 
 public:
-    Edge2D(Node* origin_, Node* destination_, const QString color_);
-    QRectF boundingRect() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    Edge2D(Node2D *sourceNode, Node2D *destNode);
 
-    Node* getOrigin(){return origin;}
-    Node* getDestination(){return destination;}
+    Node2D* sourceNode() const;
+    Node2D* destNode() const;
+
+    void adjust();
+
+protected:
+    QRectF boundingRect() const;
+    void paint(QPainter *painter, const
+    QStyleOptionGraphicsItem *option, QWidget *widget);
 };
 
 #endif // EDGE2D_H

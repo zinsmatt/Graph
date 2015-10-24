@@ -1,38 +1,92 @@
 #include "node2d.h"
-#include <iostream>
-#include <QStyleOptionGraphicsItem>
+#include "edge2d.h"
+#include <QGraphicsScene>
+#include <QGraphicsSceneMouseEvent>
+#include <QPainter>
+#include <QStyleOption>
 
-Node2D::Node2D(const QString& label_, float x, float y, float radius_, float border_, const QString& fillColor_) :
-    radius(radius_), border(border_), fillColor(QColor(fillColor_)), label(label_), posLabel(x+radius*.75,
-                                                                                             y+radius*1.25)
+Node2D::Node2D()
 {
-    setPos(x, y);
-    setFlag(QGraphicsItem::ItemIsMovable);
+    setFlag(ItemIsMovable);
+    setFlag(ItemSendsGeometryChanges);
+    setCacheMode(DeviceCoordinateCache);
+    setZValue(-1);
 }
 
 
+
+void Node2D::addEdge(Edge2D *edge)
+{
+    edgeList << edge;
+    edge->adjust();
+}
+
+QList<Edge2D *> Node2D::edges() const
+{
+    return edgeList;
+}
 
 QRectF Node2D::boundingRect() const
 {
-    return QRectF(0,0,radius*2,radius*2);
+    qreal adjust = 2;
+    return QRectF( -10 - adjust, -10 - adjust,
+                  23 + adjust, 23 + adjust);
 }
 
-void Node2D::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+QPainterPath Node2D::shape() const
 {
-    painter->setClipRect( option->exposedRect );
-
-    QRectF rect = boundingRect();
-    QPen pen(Qt::red, border);
-    painter->setPen(pen);
-    painter->setBrush(QBrush(fillColor));
-    painter->drawEllipse(rect);
-    QFont font("Arial", 25,10);
-    painter->setFont(font);
-    painter->drawText(posLabel,label);
+    QPainterPath path;
+    path.addEllipse(-10, -10, 20, 20);
+    return path;
 }
+
+void Node2D::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
+{
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(Qt::darkGray);
+    painter->drawEllipse(-7, -7, 20, 20);
+
+    QRadialGradient gradient(-3, -3, 10);
+    if (option->state & QStyle::State_Sunken) {
+        gradient.setCenter(3, 3);
+        gradient.setFocalPoint(3, 3);
+        gradient.setColorAt(1, QColor(Qt::yellow).light(120));
+        gradient.setColorAt(0, QColor(Qt::darkYellow).light(120));
+    } else {
+        gradient.setColorAt(0, Qt::yellow);
+        gradient.setColorAt(1, Qt::darkYellow);
+    }
+    painter->setBrush(gradient);
+
+    painter->setPen(QPen(Qt::black, 0));
+    painter->drawEllipse(-10, -10, 20, 20);
+}
+
+
+QVariant Node2D::itemChange(GraphicsItemChange change, const QVariant &value)
+{
+    switch (change) {
+    case ItemPositionHasChanged:
+        foreach (Edge2D *edge, edgeList)
+            edge->adjust();
+        //graph->itemMoved();
+        break;
+    default:
+        break;
+    };
+
+    return QGraphicsItem::itemChange(change, value);
+}
+
 
 void Node2D::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    std::cout << x() << " " << y() << std::endl;
+    update();
+    QGraphicsItem::mousePressEvent(event);
 }
 
+void Node2D::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    update();
+    QGraphicsItem::mouseReleaseEvent(event);
+}
