@@ -10,8 +10,8 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-   // QApplication a(argc, argv);
-/*
+    QApplication a(argc, argv);
+
     MainWindow win;
 
     Graph g;
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 
     win.show();
 
-*/
+
 /*
     std::cout << "LOSC" << std::endl;
 /*
@@ -49,13 +49,14 @@ int main(int argc, char *argv[])
     cout << "Square Matrix = \n" << square << endl;
 */
 
-    Graph g;
+//    Graph g;
 
 
 
  //  AdjacencyMatrix adj;
  //  cout << adj << endl;
 
+    /*
    Node *n1 = new Node();
    Node *n2 = new Node();
 
@@ -71,7 +72,7 @@ int main(int argc, char *argv[])
    cout << g << endl;
    delete n1;
    delete n2;
-
+*/
     //Matrix<int> *m = new SquareMatrix<int>(5);
 
 
@@ -96,6 +97,6 @@ int main(int argc, char *argv[])
    //TODO initialisation adjacency Matrix avec les nodes
    // TODO removeNode a tester
 
-    return 1;//a.exec();
+    return a.exec();
 
 }
