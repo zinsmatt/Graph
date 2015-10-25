@@ -13,23 +13,26 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     MainWindow win;
-
     Graph g;
-    g.addNode("A", 0, 0, 25, 2, "blue");
-    g.addNode("B", 100, 50, 25, 2, "yellow");
-    Node2D *node1 = new Node2D();
-    Node2D *node2 = new Node2D();
-    Node2D *node3 = new Node2D();
-    win.getScene().addItem(node1);
-    win.getScene().addItem(node2);
-    win.getScene().addItem(node3);
 
-    win.getScene().addItem(new Edge2D(node1, node2));
-    win.getScene().addItem(new Edge2D(node2, node3));
+    Node *node1 = new Node();
+    Node *node2 = new Node();
+    Node *node3 = new Node();
+
+    Edge* e = new Edge(node1, node2, true);
+
+    node1->setProperties(10,10,"#00ff00", "#aaffaa", 25);
+    node2->setProperties(-25,-30,"#ff0000", "#ffaaaa", 50);
+    node3->setProperties(50,10,"#0000ff", "#aaaaff", 75);
+
+    g.addNode(node1);
+    g.addNode(node2);
+    g.addNode(node3);
+    g.addEdge(e);
+
+
 
     g.draw(win.getScene());
-
-
 
     win.show();
 

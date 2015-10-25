@@ -2,9 +2,9 @@
 #define NODE_H
 #include <vector>
 #include "element.h"
-#include "node2d.h"
 
 class Edge;
+class Node2D;
 
 class Node : public Element
 {
@@ -14,8 +14,7 @@ private:
 
 
 public:
-    Node(const QString& label_, float x, float y, float radius, float border, const QString color);
-    Node(){}
+    Node();
 
     /* \brief add an adjacent edge
      * \param a pointer to the edge
@@ -34,6 +33,7 @@ public:
      * */
     const std::vector<Edge *> &getAdjacentEdges() const { return adjacentEdges; }
 
+    void setProperties(float x, float y, const QString& color, const QString& clicColor, float radius);
     Node2D& getNode2D() {return *node2d;}
 
 };

@@ -12,7 +12,7 @@ public:
     /* \brief Constructor
      * \param 2 nodes and a boolean for orientation
      * */
-    Edge(Node* n1, Node *n2, bool oriented, const QString color);
+    Edge(Node* n1, Node *n2, bool oriented);
 
     /* \brief Destructor
      * */

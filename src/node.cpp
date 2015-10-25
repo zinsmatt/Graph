@@ -1,7 +1,7 @@
 #include "node.h"
+#include "node2d.h"
 
-
-Node::Node(const QString &label_, float x, float y, float radius, float border, const QString color) : Element()
+Node::Node() : node2d(new Node2D())
 {
 
 
@@ -24,4 +24,11 @@ bool Node::removeAdjacentEdge(Edge *edge)
         return false; //edge was not adjacent to this node
     adjacentEdges.erase(pos);
     return true;
+}
+
+void Node::setProperties(float x, float y, const QString &color, const QString &clicColor, float radius)
+{
+    node2d->setColor(color);
+    node2d->setRadius(radius);
+    node2d->setClicColor(clicColor);
 }

@@ -1,5 +1,5 @@
 #include "graph.h"
-
+#include "node2d.h"
 
 Graph::Graph(GraphContainer *gc) : container(gc)
 {
@@ -15,18 +15,6 @@ Graph::~Graph()
 }
 
 
-//------------------------------------------------------------------
-
-void Graph::addNode(const QString& label, float x, float y, float radius, float border, const QString& color)
-{
-    //nodes.push_back(Node(label, x, y, radius, border, color));
-}
-
-void Graph::addEdge(Node *n1, Node *n2, bool oriented, const QString &color)
-{
-    //edges.push_back(Edge(n1, n2, oriented, color));
-
-}
 
 
 

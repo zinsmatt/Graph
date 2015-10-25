@@ -13,9 +13,10 @@ private:
     QPointF sourcePoint;
     QPointF destPoint;
     qreal arrowSize;
+    bool oriented;
 
 public:
-    Edge2D(Node2D *sourceNode, Node2D *destNode);
+    Edge2D(Node2D *sourceNode, Node2D *destNode, bool orient);
 
     Node2D* sourceNode() const;
     Node2D* destNode() const;

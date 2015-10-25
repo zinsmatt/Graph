@@ -32,15 +32,6 @@ public:
     ~Graph();
 
 
-    /*void addNode(const Node& n){
-        nodes.push_back(n);
-    }
-    void addEdge(const Edge& e){
-        edges.push_back(e);
-    }*/
-
-    void addNode(const QString &label, float x, float y, float radius, float border, const QString &color);
-    void addEdge(Node* n1, Node* n2, bool oriented, const QString &color);
 
 
  //   std::vector<Node>& getNodes(){return nodes;}
