@@ -33,7 +33,10 @@ public:
     /* \brief get the adjacent edges liste
      * \return a const reference to the vector
      * */
-    const std::vector<Edge *> &getAdjacentEdges() const { return adjacentEdges; }
+    const std::vector<Edge *>& getAdjacentEdges() const { return adjacentEdges; }
+
+    const std::vector<Edge*>& getAdjacentOutEdges() const { return adjacentOutEdges; }
+    const std::vector<Edge*>& getAdjacentInEdges() const { return adjacentInEdges; }
 
     void setProperties(float x, float y, const QString& color, const QString& clicColor, float radius);
     Node2D& getNode2D() {return *node2d;}

@@ -1,9 +1,9 @@
 #include "algorithm.h"
 
 
-Algorithm::Algorithm()
+Algorithm::Algorithm(Graph *graph)
 {
-
+    this->graph = graph;
 }
 
 Algorithm::~Algorithm()

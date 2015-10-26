@@ -1,19 +1,13 @@
 #include "element.h"
 
 
-
 int Element::idCounter = 0;
 
-/* \brief initialise idCounter
- * \param init value
- * */
+
 void Element::InitIdCounter(int value)
 {
     idCounter = value;
 }
-
-
-
 
 Element::Element()
 {
@@ -25,13 +19,6 @@ Element::~Element()
 
 }
 
-
-
-
-/* \brief add an integer attribute
- * \param attribute's keyword and value
- * \return true if added, false if not added or already exists
- * */
 bool Element::addIntAttribute(const QString& key, int x)
 {
     if(intAttributes.find(key) != intAttributes.end())
@@ -40,10 +27,6 @@ bool Element::addIntAttribute(const QString& key, int x)
     return true;
 }
 
-/* \brief add a float attribute
- * \param attribute's keyword and value
- * \return true if added, false if not added or already exists
- * */
 bool Element::addFloatAttribute(const QString& key, float x)
 {
     if(floatAttributes.find(key) != floatAttributes.end())
@@ -52,10 +35,6 @@ bool Element::addFloatAttribute(const QString& key, float x)
     return true;
 }
 
-/* \brief add a string attribute
- * \param attribute's keyword and value
- * \return true if added, false if already exists
- * */
 bool Element::addStringAttribute(const QString& key, const QString& s)
 {
     if(stringAttributes.find(key) != stringAttributes.end())
@@ -64,12 +43,6 @@ bool Element::addStringAttribute(const QString& key, const QString& s)
     return true;
 }
 
-
-
-/* \brief remove a integer attribute
- * \param name of the attribute
- * \return true if the attribute was removed, else false
- * */
 bool Element::removeIntAttribute(const QString &s)
 {
     if(intAttributes.find(s) != intAttributes.end())
@@ -80,10 +53,6 @@ bool Element::removeIntAttribute(const QString &s)
     return false;
 }
 
-/* \brief remove float integer attribute
- * \param name of the attribute
- * \return true if the attribute was removed, else false
- * */
 bool Element::removeFloatAttribute(const QString &s)
 {
     if(floatAttributes.find(s) != floatAttributes.end())
@@ -94,11 +63,6 @@ bool Element::removeFloatAttribute(const QString &s)
     return false;
 }
 
-
-/* \brief remove a string attribute
- * \param name of the attribute
- * \return true if the attribute was removed, else false
- * */
 bool Element::removeStringAttribute(const QString &s)
 {
     if(stringAttributes.find(s) != stringAttributes.end())
@@ -108,3 +72,20 @@ bool Element::removeStringAttribute(const QString &s)
     }
     return false;
 }
+
+bool Element::hasIntAttribute(const QString &key)
+{
+    return intAttributes.find(key) != intAttributes.end();
+}
+
+bool Element::hasFloatAttribute(const QString &key)
+{
+    return floatAttributes.find(key) == floatAttributes.end();
+}
+
+bool Element::hasStringAttribute(const QString &key)
+{
+    return stringAttributes.find(key) == stringAttributes.end();
+}
+
+

@@ -75,6 +75,16 @@ public:
         return container->getEdge(n1,n2);
     }
 
+    /* \brief Get all nodes
+     * \return a reference on the vector of node
+     * */
+    std::vector<Node*>& getNodes() { return nodes; }
+
+    /* \brief Get all edges
+     * \return a reference on the vector of edges
+     * */
+    std::vector<Edge*>& getEdges() { return edges; }
+
     /* \brief Get a string description
      * \return QString describing the graph
      * */

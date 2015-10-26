@@ -32,7 +32,9 @@ SOURCES += \
     src/successorlist.cpp \
     src/node2d.cpp \
     src/edge2d.cpp \
-    src/algorithm.cpp
+    src/algorithm.cpp \
+    src/shortestpathalgorithm.cpp \
+    src/fordalgorithm.cpp
 
 SUBDIRS += \
     src/Graph.pro
@@ -54,7 +56,9 @@ HEADERS += \
     src/successorlist.h \
     src/node2d.h \
     src/edge2d.h \
-    src/algorithm.h
+    src/algorithm.h \
+    src/shortestpathalgorithm.h \
+    src/fordalgorithm.h
 
 FORMS += \
     src/mainwindow.ui
