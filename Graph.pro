@@ -31,7 +31,8 @@ SOURCES += \
     src/incidencematrix.cpp \
     src/successorlist.cpp \
     src/node2d.cpp \
-    src/edge2d.cpp
+    src/edge2d.cpp \
+    src/algorithm.cpp
 
 SUBDIRS += \
     src/Graph.pro
@@ -52,7 +53,8 @@ HEADERS += \
     src/incidencematrix.h \
     src/successorlist.h \
     src/node2d.h \
-    src/edge2d.h
+    src/edge2d.h \
+    src/algorithm.h
 
 FORMS += \
     src/mainwindow.ui
