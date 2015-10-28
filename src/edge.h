@@ -9,6 +9,9 @@ class Edge : public Element
     Edge2D* edge2d;
 public:
 
+
+    Edge();
+
     /* \brief Constructor
      * \param 2 nodes and a boolean for orientation
      * */
@@ -16,7 +19,7 @@ public:
 
     /* \brief Destructor
      * */
-    ~Edge();
+    virtual ~Edge();
 
     /* \brief Set or unset orientation
      * \param boolean value

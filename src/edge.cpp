@@ -17,3 +17,7 @@ Edge::~Edge()
     delete edge2d;
 }
 
+Edge::Edge()
+{
+
+}

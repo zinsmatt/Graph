@@ -6,6 +6,7 @@
 #include "graph.h"
 #include "node2d.h"
 #include "fordalgorithm.h"
+#include "elementfactory.h"
 
 using namespace std;
 
@@ -57,6 +58,10 @@ int main(int argc, char *argv[])
 */
 
    Graph g;
+
+   Element* e = ElementFactory::instanciate(ElementFactory::node);
+   Element* f = ElementFactory::instanciate(ElementFactory::node);
+   Element* edge= ElementFactory::instanciate(ElementFactory::edge);
 
 
 

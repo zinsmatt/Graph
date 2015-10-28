@@ -34,7 +34,8 @@ SOURCES += \
     src/edge2d.cpp \
     src/algorithm.cpp \
     src/shortestpathalgorithm.cpp \
-    src/fordalgorithm.cpp
+    src/fordalgorithm.cpp \
+    src/elementfactory.cpp
 
 SUBDIRS += \
     src/Graph.pro
@@ -58,7 +59,9 @@ HEADERS += \
     src/edge2d.h \
     src/algorithm.h \
     src/shortestpathalgorithm.h \
-    src/fordalgorithm.h
+    src/fordalgorithm.h \
+    elementfactory.h \
+    src/elementfactory.h
 
 FORMS += \
     src/mainwindow.ui

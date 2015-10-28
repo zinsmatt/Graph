@@ -18,7 +18,8 @@ class Element
 public:
 
     Element();
-    ~Element();
+
+    virtual ~Element();
 
     /* \brief initialise idCounter
      * \param init value
