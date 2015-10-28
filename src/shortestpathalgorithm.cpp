@@ -27,8 +27,7 @@ bool ShortestPathAlgorithm::check() const
     std::vector<Edge*>& edges = graph->getEdges();
     for(int iter=0 ; iter<edges.size(); iter++)
     {
-        if(!edges[iter]->hasIntAttribute(attribute) &&
-                !edges[iter]->hasFloatAttribute(attribute))
+        if(!edges[iter]->hasFloatAttribute(attribute))      //sortestPath algorithm require a float attribute for each node
             return false;       //an edge canot be compared
     }
     return true;

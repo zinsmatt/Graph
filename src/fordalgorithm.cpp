@@ -1,5 +1,6 @@
-#include "fordalgorithm.h"
+#include <limits>
 #include <iostream>
+#include "fordalgorithm.h"
 
 FordAlgorithm::FordAlgorithm(Graph *graph, Node *start, const QString &key)
     : ShortestPathAlgorithm(graph,start,key)
@@ -27,35 +28,12 @@ void FordAlgorithm::run()
 
     const std::vector<Node*>& nodes = graph->getNodes();
     int nbNodes = nodes.size();
-   /* int iter=0;
-    for(;iter<nbNodes && nodes[iter]!=startingNode;iter++){}
-    int startingIndex = iter;
-
-    int* delta = new int[nbNodes];
-    memset(delta,INFINITY,sizeof(int));
-    delta[startingIndex] = 0;
-
-    bool change = true;
-    while(change)
-    {
-        change = false;
-        for(int nodeIter=0; nodeIter<nbNodes; nodeIter++)
-        {
-            std::vector<Edges*>& outEdges = nodes[nodeIter]->getAdjacentOutEdges();
-            for(int edgeIter=0; edgeIter<outEdges.size(); edgeIter++)
-            {
-                int index2 = outEdges[edgeIter]->getNode2()
-                if(delta[])
-            }
-
-        }
-    }*/
 
     for(int nodeIter=0; nodeIter<nbNodes; nodeIter++)
     {
-        nodes[nodeIter]->addIntAttribute("delta",INFINITY);
+        nodes[nodeIter]->addFloatAttribute("delta",std::numeric_limits<float>::max());
     }
-    startingNode->setIntAttribute("delta",0);
+    startingNode->setFloatAttribute("delta",0);
     bool change;
     do
     {
@@ -65,11 +43,11 @@ void FordAlgorithm::run()
             const std::vector<Edge*>& outEdges = nodes[nodeIter]->getAdjacentOutEdges();
             for(int edgeIter=0; edgeIter<outEdges.size(); edgeIter++)
             {
-                int oldDelta = outEdges[edgeIter]->getNode2()->getIntAttribute("delta");
-                int newDelta = nodes[nodeIter]->getIntAttribute("delta") + outEdges[edgeIter]->getIntAttribute(attribute);
+                float oldDelta = outEdges[edgeIter]->getNode2()->getFloatAttribute("delta");
+                float newDelta = nodes[nodeIter]->getFloatAttribute("delta") + outEdges[edgeIter]->getFloatAttribute(attribute);
                 if(newDelta < oldDelta)
                 {
-                    outEdges[edgeIter]->getNode2()->setIntAttribute("delta",newDelta);
+                    outEdges[edgeIter]->getNode2()->setFloatAttribute("delta",newDelta);
                     change = true;
                 }
             }
@@ -82,7 +60,7 @@ void FordAlgorithm::run()
     {
         if(nodes[iter] != startingNode)
         {
-            std::cout << "cost to " << nodes[iter]->getId() << "\t=\t" << nodes[iter]->getIntAttribute("delta") << std::endl;
+            std::cout << "cost to " << nodes[iter]->getId() << "\t=\t" << nodes[iter]->getFloatAttribute("delta") << std::endl;
         }
     }
 }
