@@ -80,12 +80,12 @@ bool Element::hasIntAttribute(const QString &key)
 
 bool Element::hasFloatAttribute(const QString &key)
 {
-    return floatAttributes.find(key) == floatAttributes.end();
+    return floatAttributes.find(key) != floatAttributes.end();
 }
 
 bool Element::hasStringAttribute(const QString &key)
 {
-    return stringAttributes.find(key) == stringAttributes.end();
+    return stringAttributes.find(key) != stringAttributes.end();
 }
 
 

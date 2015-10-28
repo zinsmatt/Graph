@@ -82,12 +82,12 @@ int main(int argc, char *argv[])
    Edge *e5 = new Edge(n3,n2,true);
    Edge *e6 = new Edge(n2,n4,true);
 
-   e1->addIntAttribute("cost",2);
-   e2->addIntAttribute("cost",1);
-   e3->addIntAttribute("cost",7);
-   e4->addIntAttribute("cost",5);
-   e5->addIntAttribute("cost",1);
-   e6->addIntAttribute("cost",4);
+   e1->addFloatAttribute("cost",2);
+   e2->addFloatAttribute("cost",1);
+   e3->addFloatAttribute("cost",7);
+   e4->addFloatAttribute("cost",5);
+   e5->addFloatAttribute("cost",1);
+   e6->addFloatAttribute("cost",4);
 
    g.addEdge(e1);
    g.addEdge(e2);
@@ -101,6 +101,30 @@ int main(int argc, char *argv[])
 
    FordAlgorithm algo(&g,n0,"cost");
    algo.run();
+
+   std::vector<Node*> succ;
+   std::vector<Node*> pred;
+
+   n1->getDirectSuccessors(succ);
+   n1->getDirectPredecessors(pred);
+
+
+   std::cout << "Direct Successors \n";
+   for(int i=0;i<succ.size();i++)
+       std::cout << succ[i]->getId() << std::endl;
+    std::cout << "Direct Predecessors \n";
+   for(int i=0;i<pred.size();i++)
+       std::cout << pred[i]->getId() << std::endl;
+
+
+
+
+
+
+
+
+
+
 
    //cout << (int)g.removeEdge(e2)<<endl;
 //    g.removeNode(n4);

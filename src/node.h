@@ -35,8 +35,28 @@ public:
      * */
     const std::vector<Edge *>& getAdjacentEdges() const { return adjacentEdges; }
 
+    /* \brief get out edges
+     * \return a const reference on a vector
+     * */
     const std::vector<Edge*>& getAdjacentOutEdges() const { return adjacentOutEdges; }
+
+    /* \brief get in edges
+     * \return a const reference on a vector
+     * */
     const std::vector<Edge*>& getAdjacentInEdges() const { return adjacentInEdges; }
+
+    /* \brief get direct successors in O(nbSuccessors)
+     * \param an reference on a vector to fill with nodes
+     * \return number of successors
+     * */
+    int getDirectSuccessors(std::vector<Node *> &successors) const;
+
+    /* \brief get direct predecessors in O(nbPredecessors)
+     * \param an reference on a vector to fill with nodes
+     * \return number of predecessors
+     * */
+    int getDirectPredecessors(std::vector<Node*>& predecessors) const;
+
 
     void setProperties(float x, float y, const QString& color, const QString& clicColor, float radius);
     Node2D& getNode2D() {return *node2d;}

@@ -48,6 +48,40 @@ bool Node::removeAdjacentEdge(Edge *edge)
     return true;
 }
 
+int Node::getDirectSuccessors(std::vector<Node*>& successors) const
+{
+    int iter=0;
+    successors.clear();
+    for(;iter<adjacentOutEdges.size();iter++)
+    {
+        successors.push_back(adjacentOutEdges[iter]->getNode2());
+    }
+    return iter;
+}
+
+int Node::getDirectPredecessors(std::vector<Node*>& predecessors) const
+{
+    int iter=0;
+    predecessors.clear();
+    for(;iter<adjacentInEdges.size();iter++)
+    {
+        predecessors.push_back(adjacentInEdges[iter]->getNode1());
+    }
+    return iter;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 void Node::setProperties(float x, float y, const QString &color, const QString &clicColor, float radius)
 {
     node2d->setColor(color);
