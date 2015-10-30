@@ -1,3 +1,4 @@
+#include <stack>
 #include "node.h"
 #include "node2d.h"
 #include "edge.h"
@@ -71,9 +72,53 @@ int Node::getDirectPredecessors(std::vector<Node*>& predecessors) const
 }
 
 
+int Node::getSuccessors(std::vector<Node *> &successors) const
+{   //we use breadth-first search with a stack
+    successors.clear();
+    std::stack<const Node*> stack;
+    stack.push(this);
+    std::vector<Node*> childs;
+    while(stack.size()>0)
+    {
+        const Node* current = stack.top();
+        stack.pop();
+        childs.clear();
+        current->getDirectSuccessors(childs);
+        for(unsigned int iter=0 ;iter<childs.size(); iter++)
+        {
+            if(std::find(successors.begin(),successors.end(),childs[iter]) == successors.end())
+            {
+                successors.push_back(childs[iter]);
+                stack.push(childs[iter]);
+            }
+        }
+    }
+    return successors.size();
+}
 
-
-
+int Node::getPredecessors(std::vector<Node *> &predecessors) const
+{   //we use breadth-first search with a stack
+    predecessors.clear();
+    std::stack<const Node*> stack;
+    stack.push(this);
+    std::vector<Node*> parent;
+    while(stack.size()>0)
+    {
+        const Node *current = stack.top();
+        stack.pop();
+        parent.clear();
+        current->getDirectPredecessors(parent);
+        for(unsigned int iter=0; iter<parent.size(); iter++)
+        {
+            if(std::find(predecessors.begin(), predecessors.end(), parent[iter]) == predecessors.end())
+            {
+                predecessors.push_back(parent[iter]);
+                stack.push(parent[iter]);
+            }
+        }
+    }
+    return predecessors.size();
+}
 
 
 

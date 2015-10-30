@@ -87,6 +87,8 @@ int main(int argc, char *argv[])
    Edge *e5 = new Edge(n3,n2,true);
    Edge *e6 = new Edge(n2,n4,true);
 
+   Edge *e7 = new Edge(n4,n1,true);
+
    e1->addFloatAttribute("cost",2);
    e2->addFloatAttribute("cost",1);
    e3->addFloatAttribute("cost",7);
@@ -101,6 +103,8 @@ int main(int argc, char *argv[])
    g.addEdge(e5);
    g.addEdge(e6);
 
+   g.addEdge(e7);
+
    cout << g << endl;
 
 
@@ -109,10 +113,15 @@ int main(int argc, char *argv[])
 
    std::vector<Node*> succ;
    std::vector<Node*> pred;
+   std::vector<Node*> successors;
+   std::vector<Node*> predecessors;
+
 
    n1->getDirectSuccessors(succ);
    n1->getDirectPredecessors(pred);
 
+   n4->getSuccessors(successors);
+   n0->getPredecessors(predecessors);
 
    std::cout << "Direct Successors \n";
    for(int i=0;i<succ.size();i++)
@@ -121,8 +130,12 @@ int main(int argc, char *argv[])
    for(int i=0;i<pred.size();i++)
        std::cout << pred[i]->getId() << std::endl;
 
-
-
+   std::cout << "Successors\n";
+  for(int i=0;i<successors.size();i++)
+      std::cout << successors[i]->getId() << std::endl;
+  std::cout << "Predecessors\n";
+ for(int i=0;i<predecessors.size();i++)
+     std::cout << predecessors[i]->getId() << std::endl;
 
 
 
