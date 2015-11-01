@@ -14,12 +14,19 @@ public:
     Manager();
     void add(T* t);
     void remove(T* t);
+    static T* instanciate();
 };
 
 template<class T>
 Manager<T>::Manager()
 {
 
+}
+
+template<class T>
+T* Manager<T>::instanciate()
+{
+    return new T();
 }
 
 template<typename T>
