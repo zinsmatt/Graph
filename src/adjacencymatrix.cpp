@@ -1,4 +1,5 @@
 #include "adjacencymatrix.h"
+#include "exception.h"
 
 AdjacencyMatrix::AdjacencyMatrix(int size, Edge* initValue) : SquareMatrix(size, initValue), GraphContainer()
 {
@@ -38,24 +39,23 @@ int AdjacencyMatrix::getNodeIndex(Node *n)
 }
 
 
-bool AdjacencyMatrix::addNode(Node* node)
+void AdjacencyMatrix::addNode(Node* node)
 {
     if(!node)
-        return false;
+        throw LogException("invalid node",__LINE__,__FILE__);
     if(idToIndex.find(node->getId()) != idToIndex.end())
-        return false;   //node is already in the matrix
+        throw LogException("node already exists in the matrix",__LINE__,__FILE__);
     idToIndex[node->getId()] = this->size();
     this->extend(NULL); //add a row and a column
-    return true;
 }
 
-bool AdjacencyMatrix::removeNode(Node *node)
+void AdjacencyMatrix::removeNode(Node *node)
 {
     if(!node)
-        return false;
+        throw LogException("invalid node",__LINE__,__FILE__);
     int idx = getNodeIndex(node);
     if(idx == -1)
-        return -1;      //node is not in the matrix
+        throw LogException("node is not in the matrix",__LINE__,__FILE__);
     this->SquareMatrix<Edge*>::shrink(idx);
     idToIndex.erase(node->getId());
     for(auto it = idToIndex.begin(); it != idToIndex.end(); it++)
@@ -63,47 +63,42 @@ bool AdjacencyMatrix::removeNode(Node *node)
         if(it->second > idx)
             it->second--;
     }
-    return true;
 }
 
 
-bool AdjacencyMatrix::addEdge(Edge* edge)
+void AdjacencyMatrix::addEdge(Edge* edge)
 {
     Node* n1 = edge->getNode1();
     Node* n2 = edge->getNode2();
     if(!edge || !n1 || !n2)
-        return false;
+        throw LogException("invalid edge",__LINE__,__FILE__);
 
     int idx1 = getNodeIndex(n1);
     int idx2 = getNodeIndex(n2);
     if(idx1==-1 || idx2==-1)
-        return false;   //a node does not exist
+        throw LogException("an extremity is not in the matrix",__LINE__,__FILE__);
     this->SquareMatrix<Edge*>::set(idx1, idx2,edge);
     if(!edge->isOriented())
         this->SquareMatrix<Edge*>::set(idx2, idx1, edge);
-    return true;
 }
 
-bool AdjacencyMatrix::removeEdge(Edge* edge)
+void AdjacencyMatrix::removeEdge(Edge* edge)
 {
     Node* n1 = edge->getNode1();
     Node* n2 = edge->getNode2();
     if(!edge || !n1 || !n2)
-        return false;
+        throw LogException("invalid edge",__LINE__,__FILE__);
     if(!getEdge(n1,n2))
-        return false;   //the edge is not in the matrix
+        throw LogException("edge is not in the matrix",__LINE__,__FILE__);   //the edge is not in the matrix
 
     int idx1 = getNodeIndex(n1);
     int idx2 = getNodeIndex(n2);
     if(idx1==-1 || idx2==-1)
-        return false;   //a node does not exist
-
-    // TODO : gerer le delete si necessaire (fait dans le graph)
+        throw LogException("an extremity is not in the matrix",__LINE__,__FILE__);   //a node does not exist
 
     this->SquareMatrix<Edge*>::set(idx1, idx2, NULL);
     if(!edge->isOriented())
         this->SquareMatrix<Edge*>::set(idx2, idx1, NULL);
-    return true;
 }
 
 Edge* AdjacencyMatrix::getEdge(Node *n1, Node *n2)

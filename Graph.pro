@@ -35,8 +35,8 @@ SOURCES += \
     src/algorithm.cpp \
     src/shortestpathalgorithm.cpp \
     src/fordalgorithm.cpp \
-    src/elementfactory.cpp \
-    src/manager.cpp
+    src/manager.cpp \
+    src/exception.cpp
 
 SUBDIRS += \
     src/Graph.pro
@@ -63,7 +63,8 @@ HEADERS += \
     src/fordalgorithm.h \
     elementfactory.h \
     src/elementfactory.h \
-    src/manager.h
+    src/manager.h \
+    src/exception.h
 
 FORMS += \
     src/mainwindow.ui

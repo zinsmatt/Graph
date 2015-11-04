@@ -1,6 +1,7 @@
 #include "graph.h"
 #include "node2d.h"
-
+#include "exception.h"
+#include <iostream>
 Graph::Graph(GraphContainer *gc) : container(gc)
 {
     if(container == NULL)  //by default -> use an adjacency matrix
@@ -37,8 +38,14 @@ void Graph::draw(QGraphicsScene& scene)
 
 bool Graph::addNode(Node *node)
 {
-    if(!container->addNode(node))
-        return false;   //insert in container failed
+    try
+    {
+        container->addNode(node);
+    }catch(LogException& exp)
+    {
+        std::cout << exp.what() << std::endl;
+        return false;
+    }
     nodes.push_back(node);
     return true;
 }
@@ -50,28 +57,53 @@ bool Graph::removeNode(Node *node)
     const std::vector<Edge*>& adjacentEdges = node->getAdjacentEdges();
     while(adjacentEdges.size()>0)               //remove the adjacent edges first
         this->removeEdge(adjacentEdges[0]);     //warning removeEdge remove the edge from adjacentEdges
-    if(!container->removeNode(node))
-        return false;   //remove from container failed
+    try
+    {
+        container->removeNode(node);
+    }catch(LogException& exp)
+    {
+        std::cout << exp.what() << std::endl;
+        return false;
+    }
+
     std::vector<Node*>::iterator pos = std::find(nodes.begin(),nodes.end(),node);
     nodes.erase(pos);
-    delete node;
+    //delete node;
     return true;
 }
 
 bool Graph::addEdge(Edge *edge)
 {
-    if(!container->addEdge(edge))
-        return false;   //insert in container failed
+    try
+    {
+        container->addEdge(edge);
+    }catch(LogException& exp)
+    {
+        std::cout << exp.what() << std::endl;
+        return false;
+    }
     edges.push_back(edge);
     return true;
 }
 
 bool Graph::removeEdge(Edge *edge)
 {
-    if(!container->removeEdge(edge))
-        return false;   //remove from container failed
     std::vector<Edge*>::iterator pos = std::find(edges.begin(),edges.end(),edge);
-    if(pos == edges.end()) return false; //edge was not in the list of edges
+    if(pos == edges.end())
+    {
+        std::cout << "edge is not in the graph" << std::endl;
+        return false; //edge was not in the list of edges
+    }
+
+    try
+    {
+        container->removeEdge(edge);
+    }catch(LogException& exp)
+    {
+        std::cout << exp.what() << std::endl;
+        return false;
+    }
+
     edges.erase(pos);
     edge->getNode1()->removeAdjacentEdge(edge);     //remove edge from adjacent edges
     edge->getNode2()->removeAdjacentEdge(edge);     //remove edge from adjacent edges

@@ -110,6 +110,16 @@ int main(int argc, char *argv[])
 
    cout << g << endl;
 
+   g.removeEdge(e7);
+   cout << g << endl;
+
+   g.removeNode(n0);
+   cout << g << endl;
+   g.removeEdge(e7);
+
+
+
+
 
    FordAlgorithm algo(&g,n0,"cost");
    algo.run();

@@ -46,28 +46,28 @@ public:
 
     /* \brief Add a Node to the matrix
      * \param a pointer to the node
-     * \return true if added, false if not added
+     * \return throw exception if problem
      * */
-    virtual bool addNode(Node* node);
+    virtual void addNode(Node* node);
 
 
     /* \brief Remove a node from the matrix
      * \param a pointer to the node to remove
-     * \return true if removed, false if does not exist
+     * \return throw exception if problem
      * */
-    virtual bool removeNode(Node* node);
+    virtual void removeNode(Node* node);
 
     /* \brief Add an edge to the matrix
      * \param a pointer to the edge
-     * \return true if added, else false
+     * \return throw exception if problem
      * */
-    virtual bool addEdge(Edge *edge);
+    virtual void addEdge(Edge *edge);
 
     /* \brief Remove an edge from the matrix
      * \param a pointer to the edge to remove
-     * \return true if removed, false if does not exist
+     * \return throw exception if problem
      * */
-    virtual bool removeEdge(Edge *edge);
+    virtual void removeEdge(Edge *edge);
 
     /* \brief Get an edge
      * \param two pointers to the nodes
