@@ -18,7 +18,7 @@ Edge2D::Edge2D(Node2D *sourceNode, Node2D *destNode, bool orient)
     source->addEdge(this);
     dest->addEdge(this);
     setZValue(-1);
-    adjust();
+    adjust(); //à voir si vraiment utile
 }
 
 
@@ -82,7 +82,7 @@ void Edge2D::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget 
 
 
     // Draw the line itself
-    painter->setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+    painter->setPen(QPen(Qt::white, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 
     painter->drawLine(line);
 

@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QGraphicsScene>
-
+#include "graph.h"
 namespace Ui {
 class MainWindow;
 }
@@ -14,11 +14,14 @@ class MainWindow : public QMainWindow
 private:
     Ui::MainWindow *ui;
     QGraphicsScene scene;
+    Graph* g;
 
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     QGraphicsScene& getScene(){return scene;}
+public slots:
+    void inputEdge();
 
 };
 

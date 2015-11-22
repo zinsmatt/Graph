@@ -13,35 +13,20 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 
-    Node* n = Manager<Node>::instanciate();
+    Node* nn = Manager<Node>::instanciate();
     Manager<Node> man;
-    man.add(n);
-    /*QApplication a(argc, argv);
+    man.add(nn);
+    QApplication a(argc, argv);
 
     MainWindow win;
-    Graph g;
-
-    Node *node1 = new Node();
-    Node *node2 = new Node();
-    Node *node3 = new Node();
-
-    Edge* e = new Edge(node1, node2, true);
-
-    node1->setProperties(10,10,"#00ff00", "#aaffaa", 25);
-    node2->setProperties(-25,-30,"#ff0000", "#ffaaaa", 50);
-    node3->setProperties(50,10,"#0000ff", "#aaaaff", 75);
-
-    g.addNode(node1);
-    g.addNode(node2);
-    g.addNode(node3);
-    g.addEdge(e);
 
 
 
-    g.draw(win.getScene());
+
 
     win.show();
-*/
+    return a.exec();
+
 
 /*
     std::cout << "LOSC" << std::endl;
@@ -61,7 +46,7 @@ int main(int argc, char *argv[])
     cout << "Square Matrix = \n" << square << endl;
 */
 
-   Graph g;
+  // Graph g;
 
 
 
@@ -70,7 +55,7 @@ int main(int argc, char *argv[])
 
  //  AdjacencyMatrix adj;
  //  cout << adj << endl;
-
+/*
    Node *n0 = new Node();
    Node *n1 = new Node();
    Node *n2 = new Node();
@@ -188,6 +173,6 @@ int main(int argc, char *argv[])
    // TODO removeNode a tester
 
     //return a.exec();
-   return 0;
+   //return 0;
 
 }
