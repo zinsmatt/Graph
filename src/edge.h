@@ -7,15 +7,19 @@ class Edge : public Element
     Node *nodes[2];     //!< nodes linked by the edge. If oriented allways from nodes[0] to nodes[1]
     bool oriented;
     Edge2D* edge2d;
-public:
 
-
+    /* \brief Default constructor
+     * */
     Edge();
 
     /* \brief Constructor
      * \param 2 nodes and a boolean for orientation
      * */
     Edge(Node* n1, Node *n2, bool oriented);
+
+public:
+
+    friend class ElementManager;
 
     /* \brief Destructor
      * */
