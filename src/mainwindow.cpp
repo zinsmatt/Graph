@@ -17,7 +17,8 @@ MainWindow::MainWindow(QWidget *parent) :
 //    item = scene.addEllipse(rectangle);
 //    item->moveBy(150,55);
     element_manager = ElementManager::getInstance();
-    g = new Graph();
+    scene.setGraph(new Graph());
+    Graph* g = &scene.getGraph();
 
     Node *node1 = element_manager->getNewNode();
     Node *node2 = element_manager->getNewNode();
@@ -48,46 +49,26 @@ void MainWindow::updateLists()
 {
     ui->edges->clear();
     ui->nodes->clear();
-    for(auto i : g->getNodes())
-        ui->nodes->addItem(QString::fromStdString(std::to_string(i->getId())));
+    Graph* g = &scene.getGraph();
+
+    for(std::pair<unsigned int, Node*> i : g->getNodes())
+        ui->nodes->addItem(QString::fromStdString(std::to_string(i.second->getId())));
     for(auto i : g->getEdges())
     {
-        QString str = QString::fromStdString(std::to_string(i->getNode1()->getId()) + " -> " + std::to_string(i->getNode2()->getId()));
+        QString str = QString::fromStdString(std::to_string(i.second->getNode1()->getId()) + " -> " +
+                                             std::to_string(i.second->getNode2()->getId()));
         ui->edges->addItem(str);
     }
 }
 
 void MainWindow::inputEdge()
 {
-    std::cout << "ol" << std::endl;
-    std::string base = ui->edgeInput->text().toStdString();
-    std::string first = "";
-    int counter = 0;
-    while(base[counter] != '-')
-    {
-        first += base[counter];
-        ++counter;
-    }
-    counter++;
-    counter++;
-    std::string sec = "";
-    for(int i = counter; i < base.size(); ++i)
-    {
-        sec += base[i];
-    }
-    std::cout << first << " " << sec << std::endl;
+    QString base = ui->edgeInput->text();
+    QStringList list = base.split(" ");
     Node* n1, *n2;
-    for(auto i : g->getNodes())
-    {
-        if(std::to_string(i->getId()) == first)
-        {
-            n1 = i;
-        }
-        else if(std::to_string(i->getId()) == sec)
-        {
-            n2 = i;
-        }
-    }
+    Graph* g = &scene.getGraph();
+    n1 = g->getNodes()[list.at(0).toInt()];
+
     if(n1 != 0 && n2 != 0)
     {
         g->addEdge(element_manager->getNewEdge(n1, n2, true));
@@ -103,6 +84,7 @@ void MainWindow::inputNode()
     QStringList list = base.split(" ");
     Node* n = element_manager->getNewNode();
     n->setProperties(0,0, list.at(0), "#ffffff", list.at(1).toFloat());
+    Graph* g = &scene.getGraph();
     g->addNode(n);
     g->draw(scene);
     updateLists();

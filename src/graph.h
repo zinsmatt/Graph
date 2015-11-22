@@ -76,7 +76,7 @@ public:
     /* \brief Get all nodes
      * \return a reference on the map of node
      * */
-    const std::map<unsigned int, Node*>& getNodes() { return idToNode; }
+    std::map<unsigned int, Node*>& getNodes() { return idToNode; }
 
     /* \brief Get all edges
      * \return a reference on the map of edges

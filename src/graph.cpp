@@ -26,13 +26,13 @@ void Graph::draw(QGraphicsScene& scene)
 {
     for(auto nodeIt : idToNode)
     {
-        Node2D* n = nodeIt.second->getNode2D();
+        Node2D* n = &nodeIt.second->getNode2D();
         if(n->scene() != &scene)
             scene.addItem(n);
     }
     for(auto edgeIt : idToEdge)
     {
-        Edge2D* e = edgeIt.second->getEdge2D();
+        Edge2D* e = &edgeIt.second->getEdge2D();
         if(e->scene() != &scene)
             scene.addItem(e);
     }

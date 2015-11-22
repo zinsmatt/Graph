@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QGraphicsScene>
+#include "graphscene.h"
 #include "graph.h"
 #include "elementmanager.h"
 
@@ -15,9 +15,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 private:
     Ui::MainWindow *ui;
-    QGraphicsScene scene;
+    GraphScene scene;
     ElementManager* element_manager;
-    Graph* g;
 
 public:
     explicit MainWindow(QWidget *parent = 0);
