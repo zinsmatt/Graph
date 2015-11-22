@@ -1,8 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "graph.h"
 #include <QGraphicsEllipseItem>
 #include <iostream>
+
+#include "graph.h"
+#include "elementmanager.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     Node *node2 = element_manager->getNewNode();
     Node *node3 = element_manager->getNewNode();
     Edge* e = element_manager->getNewEdge(node1, node2, true);
+
 
     node1->setProperties(10,10,"#00ff00", "#aaffaa", 25);
     node2->setProperties(-25,-30,"#ff0000", "#ffaaaa", 50);

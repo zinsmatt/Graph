@@ -14,9 +14,14 @@ private:
     std::vector<Edge*> adjacentInEdges;     //!< vector of pointers to only incident edges
     std::vector<Edge*> adjacentOutEdges;    //!< vector of pointers to only out edges
 
+    /* \brief Default constructor
+     * */
+    Node();
 
 public:
-    Node();
+
+    friend class ElementManager;
+
 
     /* \brief add an adjacent edge and put it in adjacent in/out edges if required
      * \param a pointer to the edge
