@@ -25,9 +25,9 @@ ElementManager::~ElementManager()
 
 Node* ElementManager::getNewNode()
 {
-    Node* node = new Node;
+    Node* node = new Node(countId);
     idToElement[countId] = node;
-    node->setId(countId);
+    //node->setId(countId);
     countId++;
     return node;
 }

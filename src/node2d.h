@@ -16,9 +16,10 @@ private:
     float radius;
     QString color;
     QString clicColor;
+    int textId;
 
 public:
-    Node2D();
+    Node2D(int id);
     void addEdge(Edge2D *edge);
 
     QList<Edge2D *> edges() const;
@@ -36,6 +37,7 @@ public:
 
     const QString& getClicColor(){return clicColor;}
     void setClicColor(const QString& c){clicColor = c;}
+
 
 protected:
     QVariant itemChange(GraphicsItemChange change, const    QVariant &value);

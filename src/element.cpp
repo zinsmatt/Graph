@@ -12,6 +12,10 @@ void Element::InitIdCounter(int value)
 Element::Element()
 {
 }
+Element::Element(int _id) : id(_id)
+{
+
+}
 
 Element::~Element()
 {

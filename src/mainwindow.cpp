@@ -90,7 +90,7 @@ void MainWindow::inputEdge()
     }
     if(n1 != 0 && n2 != 0)
     {
-        g->addEdge(new Edge(n1, n2, true));
+        g->addEdge(element_manager->getNewEdge(n1, n2, true));
 
     }
     g->draw(scene);
