@@ -26,11 +26,15 @@ void Graph::draw(QGraphicsScene& scene)
 {
     for(unsigned int i = 0; i < nodes.size(); ++i)
     {
-        scene.addItem(&nodes[i]->getNode2D());
+        Node2D* n = &nodes[i]->getNode2D();
+        if(n->scene() != &scene)
+            scene.addItem(n);
     }
     for(unsigned int i = 0; i < edges.size(); ++i)
     {
-        scene.addItem(&edges[i]->getEdge2D());
+        Edge2D* e = &edges[i]->getEdge2D();
+        if(e->scene() != &scene)
+            scene.addItem(e);
     }
 }
 

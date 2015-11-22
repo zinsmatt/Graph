@@ -1,9 +1,9 @@
 #include "element.h"
 
+
+//int Element::idCounter = 0;
+
 /*
-int Element::idCounter = 0;
-
-
 void Element::InitIdCounter(int value)
 {
     idCounter = value;
@@ -11,7 +11,6 @@ void Element::InitIdCounter(int value)
 */
 Element::Element()
 {
-
 }
 
 Element::~Element()

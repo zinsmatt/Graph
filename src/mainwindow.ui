@@ -17,8 +17,8 @@
    <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>60</y>
+      <x>0</x>
+      <y>10</y>
       <width>531</width>
       <height>481</height>
      </rect>
@@ -36,29 +36,39 @@
    <widget class="QListWidget" name="nodes">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>60</y>
-      <width>256</width>
-      <height>192</height>
+      <x>550</x>
+      <y>20</y>
+      <width>100</width>
+      <height>200</height>
      </rect>
     </property>
    </widget>
    <widget class="QListWidget" name="edges">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>270</y>
-      <width>256</width>
-      <height>192</height>
+      <x>670</x>
+      <y>20</y>
+      <width>100</width>
+      <height>200</height>
      </rect>
     </property>
    </widget>
    <widget class="QLineEdit" name="edgeInput">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>480</y>
-      <width>113</width>
+      <x>550</x>
+      <y>230</y>
+      <width>221</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="nodeInput">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>380</y>
+      <width>221</width>
       <height>25</height>
      </rect>
     </property>
