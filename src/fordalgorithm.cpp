@@ -26,7 +26,11 @@ void FordAlgorithm::run()
     if(!check())
         return;
 
-    const std::vector<Node*>& nodes = graph->getNodes();
+    std::vector<Node*> nodes;
+    const std::map<unsigned int, Node*>& nodesMap = graph->getNodes();
+    for(auto nodeIt: nodesMap)
+        nodes.push_back(nodeIt.second);
+    //const std::vector<Node*>& nodes = graph->getNodes();
     int nbNodes = nodes.size();
 
     for(int nodeIter=0; nodeIter<nbNodes; nodeIter++)

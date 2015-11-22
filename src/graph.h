@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QStyleOptionGraphicsItem>
 #include <QPen>
+
 #include "edge.h"
 #include "graphcontainer.h"
 #include "adjacencymatrix.h"
@@ -13,8 +14,9 @@
 class Graph
 {
 private:
-    std::vector<Node*> nodes;
-    std::vector<Edge*> edges;
+
+    std::map<unsigned int, Node*> idToNode;
+    std::map<unsigned int, Edge*> idToEdge;
 
     std::vector<GraphContainer*> containers;
 
@@ -31,9 +33,8 @@ public:
      * */
     ~Graph();
 
- //   std::vector<Node>& getNodes(){return nodes;}
 
-    unsigned int size() const {return nodes.size();}
+    unsigned int size() const {return idToNode.size();}
 
     void draw(QGraphicsScene& scene);
 
@@ -73,14 +74,14 @@ public:
     }
 
     /* \brief Get all nodes
-     * \return a reference on the vector of node
+     * \return a reference on the map of node
      * */
-    std::vector<Node*>& getNodes() { return nodes; }
+    const std::map<unsigned int, Node*>& getNodes() { return idToNode; }
 
     /* \brief Get all edges
-     * \return a reference on the vector of edges
+     * \return a reference on the map of edges
      * */
-    std::vector<Edge*>& getEdges() { return edges; }
+    const std::map<unsigned int, Edge*>& getEdges() { return idToEdge; }
 
     /* \brief Get a string description
      * \return QString describing the graph
@@ -91,17 +92,13 @@ public:
      * \param a pointer to the node
      * \return boolean true if it is in, false otherwise
      * */
-    bool isIn(Node *node) const {
-        return std::find(nodes.begin(),nodes.end(),node) != nodes.end();
-    }
+    bool isIn(Node *node) const;
 
     /* \brief inline function that tells if an edge is in the graph
      * \param a pointer to the edge
      * \return boolean true if it is in, false otherwise
      * */
-    bool isIn(Edge *edge) const {
-        return std::find(edges.begin(),edges.end(),edge) != edges.end();
-    }
+    bool isIn(Edge *edge) const;
 
     // PAS UTILE POUR l INSTANT
     /* \brief Get the container
