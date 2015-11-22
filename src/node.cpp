@@ -3,7 +3,7 @@
 #include "node2d.h"
 #include "edge.h"
 
-Node::Node() : node2d(new Node2D())
+Node::Node(int id) : Element(id), node2d(new Node2D(id))
 {
 
 

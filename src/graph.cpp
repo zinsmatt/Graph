@@ -24,15 +24,18 @@ Graph::~Graph()
 
 void Graph::draw(QGraphicsScene& scene)
 {
-    /*
-    for(unsigned int i = 0; i < nodes.size(); ++i)
+    for(auto nodeIt : idToNode)
     {
-        scene.addItem(&nodes[i]->getNode2D());
+        Node2D* n = nodeIt.second->getNode2D();
+        if(n->scene() != &scene)
+            scene.addItem(n);
     }
-    for(unsigned int i = 0; i < edges.size(); ++i)
+    for(auto edgeIt : idToEdge)
     {
-        scene.addItem(&edges[i]->getEdge2D());
-    }*/
+        Edge2D* e = edgeIt.second->getEdge2D();
+        if(e->scene() != &scene)
+            scene.addItem(e);
+    }
 }
 
 

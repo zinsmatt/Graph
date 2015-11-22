@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
    // Node* n = Manager<Node>::instanciate();
    // Manager<Node> man;
    // man.add(n);
-    /*QApplication a(argc, argv);
+    QApplication a(argc, argv);
 
 
     MainWindow win;
@@ -30,8 +30,6 @@ int main(int argc, char *argv[])
     return a.exec();
 
 
-/*
-    std::cout << "LOSC" << std::endl;
 /*
 
     Matrix<int> m(2,2);

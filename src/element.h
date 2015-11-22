@@ -18,6 +18,7 @@ class Element
 public:
 
     Element();
+    Element(int id);
 
     virtual ~Element();
 

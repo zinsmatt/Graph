@@ -16,7 +16,7 @@ private:
 
     /* \brief Default constructor
      * */
-    Node();
+    Node(int id);
 
 public:
 

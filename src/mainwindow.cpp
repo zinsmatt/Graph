@@ -16,14 +16,14 @@ MainWindow::MainWindow(QWidget *parent) :
 //    QRect rectangle(QPoint(25,25), QPoint(150,150));
 //    item = scene.addEllipse(rectangle);
 //    item->moveBy(150,55);
-
+    element_manager = ElementManager::getInstance();
     g = new Graph();
-    ElementManager *manager = ElementManager::getInstance();
 
-    Node *node1 = manager->getNewNode(); //new Node();
-    Node *node2 = manager->getNewNode(); //new Node();
-    Node *node3 = manager->getNewNode(); //new Node();
-    Edge* e = manager->getNewEdge(node1, node2, true); // new Edge(node1, node2, true);
+    Node *node1 = element_manager->getNewNode();
+    Node *node2 = element_manager->getNewNode();
+    Node *node3 = element_manager->getNewNode();
+    Edge* e = element_manager->getNewEdge(node1, node2, true);
+
 
     node1->setProperties(10,10,"#00ff00", "#aaffaa", 25);
     node2->setProperties(-25,-30,"#ff0000", "#ffaaaa", 50);
@@ -38,16 +38,23 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
+
+    QObject::connect(ui->edgeInput, SIGNAL(returnPressed()), this, SLOT(inputEdge())) ;
+    QObject::connect(ui->nodeInput, SIGNAL(returnPressed()), this, SLOT(inputNode())) ;
+    updateLists();
+}
+
+void MainWindow::updateLists()
+{
+    ui->edges->clear();
+    ui->nodes->clear();
     for(auto i : g->getNodes())
         ui->nodes->addItem(QString::fromStdString(std::to_string(i->getId())));
     for(auto i : g->getEdges())
     {
         QString str = QString::fromStdString(std::to_string(i->getNode1()->getId()) + " -> " + std::to_string(i->getNode2()->getId()));
         ui->edges->addItem(str);
-
-    QObject::connect(ui->edgeInput, SIGNAL(returnPressed()), this, SLOT(inputEdge())) ;
     }
-
 }
 
 void MainWindow::inputEdge()
@@ -69,10 +76,37 @@ void MainWindow::inputEdge()
         sec += base[i];
     }
     std::cout << first << " " << sec << std::endl;
+    Node* n1, *n2;
+    for(auto i : g->getNodes())
+    {
+        if(std::to_string(i->getId()) == first)
+        {
+            n1 = i;
+        }
+        else if(std::to_string(i->getId()) == sec)
+        {
+            n2 = i;
+        }
+    }
+    if(n1 != 0 && n2 != 0)
+    {
+        g->addEdge(element_manager->getNewEdge(n1, n2, true));
 
+    }
+    g->draw(scene);
+    updateLists();
 }
 
-
+void MainWindow::inputNode()
+{
+    QString base = ui->nodeInput->text();
+    QStringList list = base.split(" ");
+    Node* n = element_manager->getNewNode();
+    n->setProperties(0,0, list.at(0), "#ffffff", list.at(1).toFloat());
+    g->addNode(n);
+    g->draw(scene);
+    updateLists();
+}
 
 
 MainWindow::~MainWindow()

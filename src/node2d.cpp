@@ -6,7 +6,7 @@
 #include <QStyleOption>
 #include <iostream>
 
-Node2D::Node2D() : color("#0000ff"), clicColor("#55aaff"), radius(20)
+Node2D::Node2D(int id) : color("#0000ff"), clicColor("#55aaff"), radius(20), textId(id)
 {
     setFlag(ItemIsMovable);
     setFlag(ItemSendsGeometryChanges);
@@ -41,10 +41,6 @@ QPainterPath Node2D::shape() const
 
 void Node2D::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
 {
-//    painter->setPen(Qt::NoPen);
-//    painter->setBrush(Qt::darkGray);
-//    painter->drawEllipse(-7, -7, radius, radius);
-
     QRadialGradient gradient(-3, -3, 10);
     if (option->state & QStyle::State_Sunken) {
         gradient.setCenter(3, 3);
@@ -56,8 +52,13 @@ void Node2D::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
         gradient.setColorAt(1, QColor(color));
     }
     painter->setBrush(gradient);
-    painter->setPen(QPen(Qt::black, 0));
+    painter->setPen(QPen(Qt::white, 1));
     painter->drawEllipse(0 ,0 ,radius*2, radius*2);
+    painter->setPen(QPen(Qt::black, 0));
+    QRectF rec = boundingRect();
+    painter->setFont(QFont("Arial", (rec.width() + rec.height()) / 4));
+    painter->drawText(rec.x(), rec.y(), rec.width(), rec.height(),Qt::AlignCenter	, QString::number(textId));
+
 }
 
 
