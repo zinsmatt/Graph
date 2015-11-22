@@ -18,10 +18,10 @@ AdjacencyMatrix::~AdjacencyMatrix()
         for(int edgeIter2=0; edgeIter2<getNbNodes(); edgeIter2++)
         {
             Edge* ret = this->get(edgeIter,edgeIter2);
-            if(ret != NULL)
+            if(ret != nullptr)
             {
                 if(ret->isOriented())
-                    set(edgeIter2,edgeIter,NULL);
+                    set(edgeIter2,edgeIter,nullptr);
                 delete ret;
             }
         }
@@ -46,7 +46,7 @@ void AdjacencyMatrix::addNode(Node* node)
     if(idToIndex.find(node->getId()) != idToIndex.end())
         throw LogException("node already exists in the matrix",__LINE__,__FILE__);
     idToIndex[node->getId()] = this->size();
-    this->extend(NULL); //add a row and a column
+    this->extend(nullptr); //add a row and a column
 }
 
 void AdjacencyMatrix::removeNode(Node *node)
@@ -96,15 +96,15 @@ void AdjacencyMatrix::removeEdge(Edge* edge)
     if(idx1==-1 || idx2==-1)
         throw LogException("an extremity is not in the matrix",__LINE__,__FILE__);   //a node does not exist
 
-    this->SquareMatrix<Edge*>::set(idx1, idx2, NULL);
+    this->SquareMatrix<Edge*>::set(idx1, idx2, nullptr);
     if(!edge->isOriented())
-        this->SquareMatrix<Edge*>::set(idx2, idx1, NULL);
+        this->SquareMatrix<Edge*>::set(idx2, idx1, nullptr);
 }
 
 Edge* AdjacencyMatrix::getEdge(Node *n1, Node *n2)
 {
     if(!n1 || !n2)
-        return NULL;
+        return nullptr;
     int idx1 = getNodeIndex(n1);
     int idx2 = getNodeIndex(n2);
     if(idx1 == -1 || idx2 == -1)
@@ -121,7 +121,7 @@ QString AdjacencyMatrix::toString() const
     {
         for(int j=0;j<this->size(); j++)
         {
-            if(this->get(i,j) == NULL)
+            if(this->get(i,j) == nullptr)
                 is << "0 ";
             else
                 is <<this->get(i,j)->getId()<<" ";

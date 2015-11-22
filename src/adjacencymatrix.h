@@ -12,13 +12,13 @@ private:
 
     /* \brief Direct access to the matrix
      * \param index
-     * \return a pointer to the edge if it exists, else NULL
+     * \return a pointer to the edge if it exists, else nullptr
      * */
     Edge* get(int x,int y) { return this->SquareMatrix<Edge*>::get(x,y); }
 
     /* \brief const access to the matrix
      * \param index
-     * \return a const pointer to the edge if it exists, else NULL
+     * \return a const pointer to the edge if it exists, else nullptr
      * */
     const Edge* get(int x,int y) const { return this->SquareMatrix<Edge*>::get(x,y); }
 
@@ -33,7 +33,7 @@ public:
     /* \brief Constructor
      * \param size of the matrix and an initial value
      * */
-    AdjacencyMatrix(int size, Edge* initValue = NULL);
+    AdjacencyMatrix(int size, Edge* initValue = nullptr);
 
     /* \brief Constructor without parameter
      * */
@@ -69,9 +69,9 @@ public:
      * */
     virtual void removeEdge(Edge *edge);
 
-    /* \brief Get an edge
+    /* \brief Get an edge (may be use this method when Graph::getEdge() because faster ?)
      * \param two pointers to the nodes
-     * \return a pointeur to the edge if it exists, else NULL
+     * \return a pointeur to the edge if it exists, else nullptr
      * */
     virtual Edge* getEdge(Node* n1, Node *n2);
 

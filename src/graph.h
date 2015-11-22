@@ -16,7 +16,7 @@ private:
     std::vector<Node*> nodes;
     std::vector<Edge*> edges;
 
-    GraphContainer* container;
+    std::vector<GraphContainer*> containers;
 
 public:
 
@@ -24,15 +24,12 @@ public:
     /* \brief Constructor
      * \param a graph container
      * */
-    Graph(GraphContainer *gc = NULL);
+    Graph(GraphContainer *gc = nullptr);
 
 
     /* \brief Destructor
      * */
     ~Graph();
-
-
-
 
  //   std::vector<Node>& getNodes(){return nodes;}
 
@@ -69,10 +66,10 @@ public:
 
     /* \brief Get an edge from the graph
      * \param two pointers to the nodes
-     * \return a pointeur to the edge if it exists, else NULL
+     * \return a pointeur to the edge if it exists, else nullptr
      * */
     Edge* getEdge(Node* n1, Node *n2){
-        return container->getEdge(n1,n2);
+        //return container->getEdge(n1,n2);
     }
 
     /* \brief Get all nodes
@@ -90,6 +87,21 @@ public:
      * */
     QString toString() const;
 
+    /* \brief inline function that tells if a node is in the graph
+     * \param a pointer to the node
+     * \return boolean true if it is in, false otherwise
+     * */
+    bool isIn(Node *node) const {
+        return std::find(nodes.begin(),nodes.end(),node) != nodes.end();
+    }
+
+    /* \brief inline function that tells if an edge is in the graph
+     * \param a pointer to the edge
+     * \return boolean true if it is in, false otherwise
+     * */
+    bool isIn(Edge *edge) const {
+        return std::find(edges.begin(),edges.end(),edge) != edges.end();
+    }
 
     // PAS UTILE POUR l INSTANT
     /* \brief Get the container

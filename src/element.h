@@ -10,8 +10,8 @@
  * */
 class Element
 {
-    static int idCounter;      //!< counter incremented for each element created
-    int id;                    //!< each element has its own id
+   // static int idCounter;      //!< counter incremented for each element created
+    unsigned int id;                    //!< each element has its own id
     std::map<QString,QString> stringAttributes;     //!< a map of string attributes identified by a keyword
     std::map<QString,int> intAttributes;            //!< a map of integer attributes identified by a keyword
     std::map<QString,float> floatAttributes;       //!< a map of float  attributes identified by a keyword
@@ -84,7 +84,7 @@ public:
 
     /* \brief Getter for the id
      * */
-    int getId() const { return id; }
+    unsigned int getId() const { return id; }
 
     const std::map<QString,QString>& getStringAttributes() const {return stringAttributes;}
     const std::map<QString,int>& getIntAttributes() const {return intAttributes;}

@@ -38,7 +38,7 @@ public:
 
     /* \brief Get an edge
      * \param two pointers to the nodes
-     * \return a pointeur to the edge if it exists, else NULL
+     * \return a pointeur to the edge if it exists, else nullptr
      * */
     virtual Edge* getEdge(Node* n1, Node *n2) = 0;
 

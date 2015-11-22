@@ -6,9 +6,11 @@ Edge::Edge(Node* n1, Node *n2, bool orient):
     nodes[0] = n1;
     nodes[1] = n2;
 
-    // n1 and n2 should not be NULL
-    nodes[0]->addAdjacentEdge(this);
-    nodes[1]->addAdjacentEdge(this);
+    // n1 and n2 should not be null
+    if(nodes[0])
+        nodes[0]->addAdjacentEdge(this);
+    if(nodes[1])
+        nodes[1]->addAdjacentEdge(this);
 
 }
 
@@ -17,7 +19,7 @@ Edge::~Edge()
     delete edge2d;
 }
 
-Edge::Edge()
+Edge::Edge() : oriented(true), nodes( {nullptr,nullptr} )
 {
 
 }

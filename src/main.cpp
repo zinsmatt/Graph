@@ -7,15 +7,16 @@
 #include "node2d.h"
 #include "fordalgorithm.h"
 #include "manager.h"
+#include "elementmanager.h"
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
 
-    Node* n = Manager<Node>::instanciate();
-    Manager<Node> man;
-    man.add(n);
+   // Node* n = Manager<Node>::instanciate();
+   // Manager<Node> man;
+   // man.add(n);
     /*QApplication a(argc, argv);
 
     MainWindow win;
@@ -61,93 +62,96 @@ int main(int argc, char *argv[])
     cout << "Square Matrix = \n" << square << endl;
 */
 
-   Graph g;
+
+    Graph g(new AdjacencyMatrix);
 
 
-
+    ElementManager *manager = ElementManager::getInstance();
 
 
 
  //  AdjacencyMatrix adj;
  //  cout << adj << endl;
 
-   Node *n0 = new Node();
-   Node *n1 = new Node();
-   Node *n2 = new Node();
-   Node *n3 = new Node();
-   Node *n4 = new Node();
+    Node *n0 = manager->getNewNode();// new Node();
+    Node *n1 = manager->getNewNode();// new Node();
+    Node *n2 = manager->getNewNode();// new Node();
+    Node *n3 = manager->getNewNode();// new Node();
+    Node *n4 = manager->getNewNode();// new Node();
 
-   g.addNode(n0);
-   g.addNode(n1);
-   g.addNode(n2);
-   g.addNode(n3);
-   g.addNode(n4);
+    g.addNode(n0);
+    g.addNode(n1);
+    g.addNode(n2);
+    g.addNode(n3);
+    g.addNode(n4);
 
-   Edge *e1 = new Edge(n0,n1,true);
-   Edge *e2 = new Edge(n1,n3,true);
-   Edge *e3 = new Edge(n1,n4,true);
-   Edge *e4 = new Edge(n0,n2,true);
-   Edge *e5 = new Edge(n3,n2,true);
-   Edge *e6 = new Edge(n2,n4,true);
+    Edge *e1 = manager->getNewEdge(n0,n1,true); //new Edge(n0,n1,true);
+    Edge *e2 = manager->getNewEdge(n1,n3,true); //new Edge(n1,n3,true);
+    Edge *e3 = manager->getNewEdge(n1,n4,true); //new Edge(n1,n4,true);
+    Edge *e4 = manager->getNewEdge(n0,n2,true); //new Edge(n0,n2,true);
+    Edge *e5 = manager->getNewEdge(n3,n2,true); //new Edge(n3,n2,true);
+    Edge *e6 = manager->getNewEdge(n2,n4,true); //new Edge(n2,n4,true);
+    Edge *e7 = manager->getNewEdge(n4,n1,true); //new Edge(n4,n1,true);
 
-   Edge *e7 = new Edge(n4,n1,true);
+    e1->addFloatAttribute("cost",2);
+    e2->addFloatAttribute("cost",1);
+    e3->addFloatAttribute("cost",7);
+    e4->addFloatAttribute("cost",5);
+    e5->addFloatAttribute("cost",1);
+    e6->addFloatAttribute("cost",4);
 
-   e1->addFloatAttribute("cost",2);
-   e2->addFloatAttribute("cost",1);
-   e3->addFloatAttribute("cost",7);
-   e4->addFloatAttribute("cost",5);
-   e5->addFloatAttribute("cost",1);
-   e6->addFloatAttribute("cost",4);
+    g.addEdge(e1);
+    g.addEdge(e2);
+    g.addEdge(e3);
+    g.addEdge(e4);
+    g.addEdge(e5);
+    g.addEdge(e6);
+    g.addEdge(e7);
 
-   g.addEdge(e1);
-   g.addEdge(e2);
-   g.addEdge(e3);
-   g.addEdge(e4);
-   g.addEdge(e5);
-   g.addEdge(e6);
-
-   g.addEdge(e7);
-
-   cout << g << endl;
-
-   g.removeEdge(e7);
-   cout << g << endl;
-
-   g.removeNode(n0);
-   cout << g << endl;
-   g.removeEdge(e7);
+    cout << g << endl;
 
 
 
 
 
-   FordAlgorithm algo(&g,n0,"cost");
-   algo.run();
+    g.removeEdge(e7);
+    cout << g << endl;
 
-   std::vector<Node*> succ;
-   std::vector<Node*> pred;
-   std::vector<Node*> successors;
-   std::vector<Node*> predecessors;
+    g.removeNode(n0);
+    cout << g << endl;
+    g.removeEdge(e7);
 
 
-   n1->getDirectSuccessors(succ);
-   n1->getDirectPredecessors(pred);
 
-   n4->getSuccessors(successors);
-   n0->getPredecessors(predecessors);
 
-   std::cout << "Direct Successors \n";
-   for(int i=0;i<succ.size();i++)
+
+    FordAlgorithm algo(&g,n0,"cost");
+    algo.run();
+
+    std::vector<Node*> succ;
+    std::vector<Node*> pred;
+    std::vector<Node*> successors;
+    std::vector<Node*> predecessors;
+
+
+    n1->getDirectSuccessors(succ);
+    n4->getDirectPredecessors(pred);
+
+    n1->getSuccessors(successors);
+    n4->getPredecessors(predecessors);
+
+    std::cout << "Direct Successors \n";
+    for(int i=0;i<succ.size();i++)
        std::cout << succ[i]->getId() << std::endl;
     std::cout << "Direct Predecessors \n";
-   for(int i=0;i<pred.size();i++)
+    for(int i=0;i<pred.size();i++)
        std::cout << pred[i]->getId() << std::endl;
 
-   std::cout << "Successors\n";
-  for(int i=0;i<successors.size();i++)
+    std::cout << "Successors\n";
+    for(int i=0;i<successors.size();i++)
       std::cout << successors[i]->getId() << std::endl;
-  std::cout << "Predecessors\n";
- for(int i=0;i<predecessors.size();i++)
+    std::cout << "Predecessors\n";
+    for(int i=0;i<predecessors.size();i++)
      std::cout << predecessors[i]->getId() << std::endl;
 
 
@@ -188,6 +192,7 @@ int main(int argc, char *argv[])
    // TODO removeNode a tester
 
     //return a.exec();
+    std::cout << " ------------------ END -------------------\n";
    return 0;
 
 }
