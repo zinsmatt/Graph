@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project(Graph_main)
 
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin/${PROJECT_NAME}/${CMAKE_BUILD_TYPE})
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/../bin/${PROJECT_NAME}/${CMAKE_BUILD_TYPE})
 
 include_directories(../graph_kernel/include)
 
