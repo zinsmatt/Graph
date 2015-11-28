@@ -1,17 +1,7 @@
 #include "element.h"
+#include <iostream>
 
 
-//int Element::idCounter = 0;
-
-/*
-void Element::InitIdCounter(int value)
-{
-    idCounter = value;
-}
-*/
-Element::Element()
-{
-}
 Element::Element(int _id) : id(_id)
 {
 
@@ -22,28 +12,28 @@ Element::~Element()
 
 }
 
-bool Element::addIntAttribute(const std::string& key, int x)
+void Element::setIntAttribute(const std::string& key, int x)
 {
     if(intAttributes.find(key) != intAttributes.end())
-        return false;
-    intAttributes[key] = x;
-    return true;
+        intAttributes[key] = x;
+    else
+        intAttributes[key] = x;
 }
 
-bool Element::addFloatAttribute(const std::string& key, float x)
+void Element::setFloatAttribute(const std::string& key, float x)
 {
     if(floatAttributes.find(key) != floatAttributes.end())
-        return false;
-    floatAttributes[key] = x;
-    return true;
+        floatAttributes[key] = x;
+    else
+        floatAttributes[key] = x;
 }
 
-bool Element::addStringAttribute(const std::string& key, const std::string& s)
+void Element::setStringAttribute(const std::string& key, const std::string& s)
 {
     if(stringAttributes.find(key) != stringAttributes.end())
-        return false;
-    stringAttributes[key] = s;
-    return true;
+        stringAttributes[key] = s;
+    else
+        stringAttributes[key] = s;
 }
 
 bool Element::removeIntAttribute(const std::string &s)
@@ -91,4 +81,42 @@ bool Element::hasStringAttribute(const std::string &key)
     return stringAttributes.find(key) != stringAttributes.end();
 }
 
+int Element::getIntAttribute(const std::string &key) const
+{
+    if(intAttributes.find(key) != intAttributes.end())
+    {
+        return intAttributes.at(key);
+    }
+    else
+    {
+        std::cerr << "Warning : getIntAttribute(" << key <<") impossible" << std::endl;
+        return false;
+    }
+}
 
+float Element::getFloatAttribute(const std::string &key) const
+{
+    if(floatAttributes.find(key) != floatAttributes.end())
+    {
+        return floatAttributes.at(key);
+    }
+    else
+    {
+        std::cerr << "Warning : getFloatAttribute(" << key <<") impossible" << std::endl;
+        return -1;
+    }
+}
+
+bool Element::getStringAttribute(const std::string &key, std::string& out) const
+{
+    if(stringAttributes.find(key) != stringAttributes.end())
+    {
+        out = stringAttributes.at(key);
+        return true;
+    }
+    else
+    {
+        std::cerr << "Warning : getStringAttribute(" << key <<") impossible" << std::endl;
+        return false;
+    }
+}

@@ -34,18 +34,16 @@ Node* ElementManager::getNewNode()
 
 Edge* ElementManager::getNewEdge()
 {
-    Edge* edge = new Edge;
+    Edge* edge = new Edge(countId);
     idToElement[countId] = edge;
-    edge->setId(countId);
     countId++;
     return edge;
 }
 
 Edge* ElementManager::getNewEdge(Node *n1, Node *n2, bool isOriented)
 {
-    Edge* edge =  new Edge(n1,n2,isOriented);
+    Edge* edge =  new Edge(countId,n1,n2,isOriented);
     idToElement[countId] = edge;
-    edge->setId(countId);
     countId++;
     return edge;
 }

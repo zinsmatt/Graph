@@ -7,13 +7,14 @@ class Edge : public Element
     bool oriented;
 
     /* \brief Default constructor
+     * \param Edge id
      * */
-    Edge();
+    Edge(unsigned int id);
 
     /* \brief Constructor
-     * \param 2 nodes and a boolean for orientation
+     * \param id, 2 nodes and a boolean for orientation
      * */
-    Edge(Node* n1, Node *n2, bool oriented);
+    Edge(unsigned int id, Node* n1, Node *n2, bool oriented);
 
 public:
 

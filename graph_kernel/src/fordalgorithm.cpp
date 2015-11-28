@@ -36,7 +36,7 @@ void FordAlgorithm::run()
 
     for(int nodeIter=0; nodeIter<nbNodes; nodeIter++)
     {
-        nodes[nodeIter]->addFloatAttribute("delta",std::numeric_limits<float>::max());
+        nodes[nodeIter]->setFloatAttribute("delta",std::numeric_limits<float>::max());
     }
     startingNode->setFloatAttribute("delta",0);
     bool change;
