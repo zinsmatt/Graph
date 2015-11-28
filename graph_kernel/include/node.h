@@ -13,8 +13,9 @@ private:
     std::vector<Edge*> adjacentOutEdges;    //!< vector of pointers to only out edges
 
     /* \brief Default constructor
+     * \param Node id
      * */
-    Node(int id);
+    Node(unsigned int id);
 
 public:
 

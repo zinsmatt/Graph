@@ -3,10 +3,8 @@
 #include <stack>
 #include <algorithm>
 
-Node::Node(int id) : Element(id)
+Node::Node(unsigned int id) : Element(id)
 {
-
-
 }
 
 

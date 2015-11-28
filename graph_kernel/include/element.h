@@ -14,35 +14,37 @@ class Element
     std::map<std::string,std::string> stringAttributes;     //!< a map of string attributes identified by a keyword
     std::map<std::string,int> intAttributes;            //!< a map of integer attributes identified by a keyword
     std::map<std::string,float> floatAttributes;       //!< a map of float  attributes identified by a keyword
+
 public:
 
-    Element();
-    Element(int id);
+    /* \brief Constructor
+     * \param element id (given by ElementManager)
+     * */
+    Element(int _id);
 
+    /* \brief Destructor
+     * */
     virtual ~Element();
 
-    /* \brief initialise idCounter
+    /* \brief Initialise idCounter
      * \param init value
      * */
     static void InitIdCounter(int value);
 
-    /* \brief add an integer attribute
+    /* \brief Set or add an integer attribute
      * \param attribute's keyword and value
-     * \return true if added, false if not added or already exists
      * */
-    bool addIntAttribute(const std::string& key, int x);
+    void setIntAttribute(const std::string& key, int x);
 
-    /* \brief add a float attribute
+    /* \brief Set or add a float attribute
      * \param attribute's keyword and value
-     * \return true if added, false if not added or already exists
      * */
-    bool addFloatAttribute(const std::string& key, float x);
+    void setFloatAttribute(const std::string& key, float x);
 
-    /* \brief add a string attribute
+    /* \brief Set or add a string attribute
      * \param attribute's keyword and value
-     * \return true if added, false if already exists
      * */
-    bool addStringAttribute(const std::string& key, const std::string& s);
+    void setStringAttribute(const std::string& key, const std::string& s);
 
     /* \brief remove a integer attribute
      * \param name of the attribute
@@ -50,60 +52,57 @@ public:
      * */
     bool removeIntAttribute(const std::string& s);
 
-    /* \brief remove float integer attribute
+    /* \brief Remove float integer attribute
      * \param name of the attribute
      * \return true if the attribute was removed, else false
      * */
     bool removeFloatAttribute(const std::string& s);
 
-    /* \brief remove a string attribute
+    /* \brief Remove a string attribute
      * \param name of the attribute
      * \return true if the attribute was removed, else false
      * */
     bool removeStringAttribute(const std::string& s);
 
-    /* \brief check if the int attribute key exists
-     * \param a string representing a key
+    /* \brief Check if the int attribute key exists
+     * \param name of the attribute
      * \return true if it exists, false else
      * */
     bool hasIntAttribute(const std::string& key);
 
-    /* \brief check if the float attribute key exists
-     * \param a string representing a key
+    /* \brief Check if the float attribute key exists
+     * \param name of the attribute
      * \return true if it exists, false else
      * */
     bool hasFloatAttribute(const std::string& key);
 
-    /* \brief check if the string attribute key exists
-     * \param a string representing a key
+    /* \brief Check if the string attribute key exists
+     * \param name of the attribute
      * \return true if it exists, false else
      * */
     bool hasStringAttribute(const std::string& key);
 
+    /* \brief Get an integer attribute
+     * \param name of the attribute
+     * \return integer
+     * */
+    int getIntAttribute(const std::string& key) const;
 
+    /* \brief Get a float attribute
+     * \param name of the attribute
+     * \return float value
+     * */
+    float getFloatAttribute(const std::string& key) const;
+
+    /* \brief Get a string attribute
+     * \param name of the attribute and a reference as out parameter
+     * \return boolean true if ok, false if key unknown
+     * */
+    bool getStringAttribute(const std::string& key, std::string& out) const;
 
     /* \brief Getter for the id
      * */
     unsigned int getId() const { return id; }
-
-    const std::map<std::string,std::string>& getStringAttributes() const {return stringAttributes;}
-    const std::map<std::string,int>& getIntAttributes() const {return intAttributes;}
-    const std::map<std::string,float>& getFloatAttributes() const {return floatAttributes;}
-
-    const std::string& getStringAttribute(const std::string& key) const {return stringAttributes.at(key);}
-    const int getIntAttribute(const std::string& key) const {return intAttributes.at(key);}
-    const float getFloatAttribute(const std::string& key) const {return floatAttributes.at(key);}
-
-    void setStringAttribute(const std::string& key, const std::string& s) { stringAttributes.at(key) = s; }
-    void setIntAttribute(const std::string& key, int x) { intAttributes.at(key) = x; }
-    void setFloatAttribute(const std::string& key, float x) { floatAttributes.at(key) = x; }
-
-    void setStringAttributes(const std::map<std::string,std::string>& m){stringAttributes = m;}
-    void setIntAttributes(const std::map<std::string,int>& m){intAttributes = m;}
-    void setFloatAttributes(const std::map<std::string,float>& m){floatAttributes = m;}
-
-    void setId(int id_){id = id_;}
-
 };
 
 

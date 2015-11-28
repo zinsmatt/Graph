@@ -48,12 +48,12 @@ int main(int argc, char *argv[])
     Edge *e6 = manager->getNewEdge(n2,n4,true); //new Edge(n2,n4,true);
     Edge *e7 = manager->getNewEdge(n4,n1,true); //new Edge(n4,n1,true);
 
-    e1->addFloatAttribute("cost",2);
-    e2->addFloatAttribute("cost",1);
-    e3->addFloatAttribute("cost",7);
-    e4->addFloatAttribute("cost",5);
-    e5->addFloatAttribute("cost",1);
-    e6->addFloatAttribute("cost",4);
+    e1->setFloatAttribute("cost",2);
+    e2->setFloatAttribute("cost",1);
+    e3->setFloatAttribute("cost",7);
+    e4->setFloatAttribute("cost",5);
+    e5->setFloatAttribute("cost",1);
+    e6->setFloatAttribute("cost",4);
 
     g.addEdge(e1);
     g.addEdge(e2);
