@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 
 
 
-    Graph g(new AdjacencyMatrix);
+    Graph g(true, new AdjacencyMatrix);
 
 
     ElementManager *manager = ElementManager::getInstance();

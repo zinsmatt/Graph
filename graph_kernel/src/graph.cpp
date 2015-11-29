@@ -2,7 +2,7 @@
 #include "exception.h"
 #include <iostream>
 
-Graph::Graph(GraphContainer *gc)
+Graph::Graph(bool _orientation, GraphContainer *gc) : orientation(_orientation)
 {
     if(gc != nullptr)  //if a container is passed, it is added
     {
@@ -73,8 +73,13 @@ bool Graph::removeNode(Node *node)
     return true;
 }
 
-bool Graph::addEdge(Edge *edge, Node *n1, Node *n2, bool isOriented)
+bool Graph::addEdge(Edge *edge, Node *n1, Node *n2, bool _orientation)
 {
+    if(_orientation != this->orientation)
+    {
+        std::cerr << "Impossible to add edge : orientation incompatible " << std::endl;
+        return false;
+    }
     if(!edge || !n1 || !n2)
         return false;
     if(this->isIn(edge))
@@ -90,7 +95,11 @@ bool Graph::addEdge(Edge *edge, Node *n1, Node *n2, bool isOriented)
 
     edge->setNode1(n1);
     edge->setNode2(n2);
-    edge->setOriented(isOriented);
+    edge->setOriented(orientation);
+
+    n1->addAdjacentEdge(edge);
+    n2->addAdjacentEdge(edge);
+
     idToEdge[edge->getId()] = edge;
 
     for(GraphContainer* contIt: containers)
@@ -104,12 +113,12 @@ bool Graph::addEdge(Edge *edge, Node *n1, Node *n2, bool isOriented)
     return true;
 }
 
-bool Graph::addEdge(Edge *edge, ElementId idN1, ElementId idN2, bool isOriented)
+bool Graph::addEdge(Edge *edge, ElementId idN1, ElementId idN2, bool _orientation)
 {
     Node *n1 = this->getNode(idN1);
     Node *n2 = this->getNode(idN2);
 
-    return this->addEdge(edge,n1,n2,isOriented);
+    return this->addEdge(edge,n1,n2,_orientation);
 }
 
 bool Graph::removeEdge(Edge *edge)
