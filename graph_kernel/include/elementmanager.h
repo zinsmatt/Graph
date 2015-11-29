@@ -1,5 +1,6 @@
 #ifndef ELEMENTMANAGER_H
 #define ELEMENTMANAGER_H
+#include "types.h"
 #include <map>
 
 class Element;
@@ -11,11 +12,10 @@ class ElementManager
 
 private:
 
-    //std::vector<Element*> elements;
     static ElementManager *instance;
-    static unsigned int countId;
+    static ElementId countId;
 
-    std::map<unsigned int, Element*> idToElement;
+    std::map<ElementId, Element*> idToElement;
 
     ElementManager();
     ElementManager(const ElementManager&);

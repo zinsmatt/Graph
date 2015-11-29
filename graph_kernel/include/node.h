@@ -15,7 +15,7 @@ private:
     /* \brief Default constructor
      * \param Node id
      * */
-    Node(unsigned int id);
+    Node(ElementId id);
 
     /* \brief add an adjacent edge and put it in adjacent in/out edges if required
      * \param a pointer to the edge

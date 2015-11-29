@@ -1,7 +1,7 @@
 #include "elementmanager.h"
 #include "edge.h"
 
-unsigned int ElementManager::countId = 0;
+ElementId ElementManager::countId = 0;
 
 ElementManager* ElementManager::instance = nullptr;
 

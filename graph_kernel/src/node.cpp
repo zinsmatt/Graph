@@ -3,7 +3,7 @@
 #include <stack>
 #include <algorithm>
 
-Node::Node(unsigned int id) : Element(id)
+Node::Node(ElementId id) : Element(id)
 {
 }
 

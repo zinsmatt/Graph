@@ -11,7 +11,6 @@ file(GLOB_RECURSE sources_files
      include/*)
 
 
-
 if(${BUILD_STATIC})
     add_library(${PROJECT_NAME}_static STATIC ${sources_files})
     install(TARGETS ${PROJECT_NAME}_static DESTINATION ${CMAKE_SOURCE_DIR}/../bin/${PROJECT_NAME}/${CMAKE_BUILD_TYPE})

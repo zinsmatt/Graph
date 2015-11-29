@@ -1,14 +1,15 @@
 #ifndef ADJACENCYMATRIX_H
 #define ADJACENCYMATRIX_H
-#include <map>
 #include "edge.h"
 #include "squarematrix.h"
 #include "graphcontainer.h"
+#include "types.h"
+#include <map>
 
 class AdjacencyMatrix : private SquareMatrix<Edge*>, public GraphContainer
 {
 private:
-    std::map<int, int> idToIndex;       //!< map between node id and index in the matrix
+    std::map<ElementId, int> idToIndex;       //!< map between node id and index in the matrix
 
     /* \brief Direct access to the matrix
      * \param index

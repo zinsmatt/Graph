@@ -1,6 +1,8 @@
 #ifndef EDGE_H
 #define EDGE_H
 #include "node.h"
+#include "types.h"
+
 class Edge : public Element
 {
     Node *nodes[2];     //!< nodes linked by the edge. If oriented allways from nodes[0] to nodes[1]
@@ -9,7 +11,7 @@ class Edge : public Element
     /* \brief Default constructor
      * \param Edge id
      * */
-    Edge(unsigned int id);
+    Edge(ElementId id);
 
     /* \brief Set nodes[0]
      * \param a pointer to the node

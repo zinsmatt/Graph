@@ -104,7 +104,7 @@ bool Graph::addEdge(Edge *edge, Node *n1, Node *n2, bool isOriented)
     return true;
 }
 
-bool Graph::addEdge(Edge *edge, unsigned int idN1, unsigned int idN2, bool isOriented)
+bool Graph::addEdge(Edge *edge, ElementId idN1, ElementId idN2, bool isOriented)
 {
     Node *n1 = this->getNode(idN1);
     Node *n2 = this->getNode(idN2);
@@ -167,7 +167,7 @@ bool Graph::isIn(Edge *edge) const
     return ret;
 }
 
-const Node* Graph::getNode(unsigned int id) const
+const Node* Graph::getNode(ElementId id) const
 {
     try
     {
@@ -180,7 +180,7 @@ const Node* Graph::getNode(unsigned int id) const
     }
 }
 
-const Edge* Graph::getEdge(unsigned int id) const
+const Edge* Graph::getEdge(ElementId id) const
 {
     try
     {
@@ -193,7 +193,7 @@ const Edge* Graph::getEdge(unsigned int id) const
     }
 }
 
-Node* Graph::getNode(unsigned int id)
+Node* Graph::getNode(ElementId id)
 {
     try
     {
@@ -206,7 +206,7 @@ Node* Graph::getNode(unsigned int id)
     }
 }
 
-Edge* Graph::getEdge(unsigned int id)
+Edge* Graph::getEdge(ElementId id)
 {
     try
     {

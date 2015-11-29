@@ -1,5 +1,6 @@
 #ifndef ELEMENT_H
 #define ELEMENT_H
+#include "types.h"
 #include <map>
 
 
@@ -10,7 +11,7 @@
 class Element
 {
    // static int idCounter;      //!< counter incremented for each element created
-    unsigned int id;                    //!< each element has its own id
+    ElementId id;                    //!< each element has its own id
     std::map<std::string,std::string> stringAttributes;     //!< a map of string attributes identified by a keyword
     std::map<std::string,int> intAttributes;            //!< a map of integer attributes identified by a keyword
     std::map<std::string,float> floatAttributes;       //!< a map of float  attributes identified by a keyword
@@ -20,7 +21,7 @@ public:
     /* \brief Constructor
      * \param element id (given by ElementManager)
      * */
-    Element(int _id);
+    Element(ElementId _id);
 
     /* \brief Destructor
      * */
@@ -102,7 +103,7 @@ public:
 
     /* \brief Getter for the id
      * */
-    unsigned int getId() const { return id; }
+    ElementId getId() const { return id; }
 };
 
 

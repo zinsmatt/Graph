@@ -28,7 +28,7 @@ void FordAlgorithm::run()
         return;
 
     std::vector<Node*> nodes;
-    const std::map<unsigned int, Node*>& nodesMap = graph->getNodes();
+    const std::map<ElementId, Node*>& nodesMap = graph->getNodes();
     for(auto nodeIt: nodesMap)
         nodes.push_back(nodeIt.second);
     //const std::vector<Node*>& nodes = graph->getNodes();

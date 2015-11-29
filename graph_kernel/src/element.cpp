@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-Element::Element(int _id) : id(_id)
+Element::Element(ElementId _id) : id(_id)
 {
 
 }

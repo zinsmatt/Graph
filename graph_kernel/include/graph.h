@@ -12,8 +12,8 @@ class Graph
 {
 private:
 
-    std::map<unsigned int, Node*> idToNode;
-    std::map<unsigned int, Edge*> idToEdge;
+    std::map<ElementId, Node*> idToNode;
+    std::map<ElementId, Edge*> idToEdge;
 
     std::vector<GraphContainer*> containers;
 
@@ -21,13 +21,13 @@ private:
      * \param node id
      * \return pointer on the node or nullptr
      * */
-    Node* getNode(unsigned int);
+    Node* getNode(ElementId id);
 
     /* \brief Get a non const pointer on an edge
      * \param edge id
      * \return pointer on the edge or nullptr
      * */
-    Edge* getEdge(unsigned int);
+    Edge* getEdge(ElementId id);
 
 
 public:
@@ -70,7 +70,7 @@ public:
      * \param a pointer to the edge, extremity nodes id and a boolean for orientation
      * \return true if added, false otherwise
      * */
-    bool addEdge(Edge *edge, unsigned int idN1, unsigned int idN2, bool isOriented);
+    bool addEdge(Edge *edge, ElementId idN1, ElementId idN2, bool isOriented);
 
     /* \brief Remove an edge from the graph
      * \param a pointer to the edge to remove
@@ -82,23 +82,23 @@ public:
      * \param node id
      * \return const pointer on the node or nullptr
      * */
-    const Node* getNode(unsigned int id) const;
+    const Node* getNode(ElementId id) const;
 
     /* \brief Get a const pointer on an edge
      * \param edge id
      * \return const pointer on the edge or nullptr
      * */
-    const Edge* getEdge(unsigned int id) const;
+    const Edge* getEdge(ElementId id) const;
 
     /* \brief Get all nodes
      * \return a reference on the map of node
      * */
-    const std::map<unsigned int, Node*>& getNodes() { return idToNode; }
+    const std::map<ElementId, Node*>& getNodes() { return idToNode; }
 
     /* \brief Get all edges
      * \return a reference on the map of edges
      * */
-    const std::map<unsigned int, Edge*>& getEdges() { return idToEdge; }
+    const std::map<ElementId, Edge*>& getEdges() { return idToEdge; }
 
     /* \brief Get a string description
      * \return std::string describing the graph

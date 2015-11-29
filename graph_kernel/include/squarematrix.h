@@ -73,8 +73,6 @@ public:
 
 };
 
-
-
 /* \brief operator << to ouput a squareMatrix
  * \param output stream and a reference to the matrix
  * \return a reference to the stream

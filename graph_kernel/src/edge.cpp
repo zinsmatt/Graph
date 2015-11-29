@@ -1,7 +1,7 @@
 #include "edge.h"
 
 
-Edge::Edge(unsigned int id) : Element(id), oriented(true), nodes{nullptr,nullptr}
+Edge::Edge(ElementId id) : Element(id), oriented(true), nodes{nullptr,nullptr}
 {
 
 }
