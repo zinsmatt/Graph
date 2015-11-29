@@ -12,6 +12,14 @@ Element::~Element()
 
 }
 
+Element& Element::operator=(const Element& elt)
+{
+    this->stringAttributes = elt.stringAttributes;
+    this->intAttributes = elt.intAttributes;
+    this->floatAttributes = elt.floatAttributes;
+}
+
+
 void Element::setIntAttribute(const std::string& key, int x)
 {
     if(intAttributes.find(key) != intAttributes.end())
@@ -118,5 +126,45 @@ bool Element::getStringAttribute(const std::string &key, std::string& out) const
     {
         std::cerr << "Warning : getStringAttribute(" << key <<") impossible" << std::endl;
         return false;
+    }
+}
+
+void Element::mergeAttributes(const Element* elt2)
+{
+    if(!elt2)
+        return;
+    for(auto intIt : elt2->intAttributes)
+    {
+        if(this->hasIntAttribute(intIt.first))
+        {
+            if(this->getIntAttribute(intIt.first) != intIt.second)
+                this->setIntAttribute(intIt.first+"_2",intIt.second);
+        }
+        else
+            this->setIntAttribute(intIt.first,intIt.second);
+    }
+
+    for(auto floatIt : elt2->floatAttributes)
+    {
+        if(this->hasFloatAttribute(floatIt.first))
+        {
+            if(this->getFloatAttribute(floatIt.first) != floatIt.second)
+                this->setFloatAttribute(floatIt.first+"_2",floatIt.second);
+        }
+        else
+            this->setFloatAttribute(floatIt.first,floatIt.second);
+    }
+
+    for(auto stringIt : elt2->stringAttributes)
+    {
+        if(this->hasStringAttribute(stringIt.first))
+        {
+            std::string temp;
+            this->getStringAttribute(stringIt.first,temp);
+            if( temp != stringIt.second)
+                this->setStringAttribute(stringIt.first+"_2",stringIt.second);
+        }
+        else
+            this->setStringAttribute(stringIt.first,stringIt.second);
     }
 }

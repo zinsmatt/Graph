@@ -40,6 +40,24 @@ Edge* ElementManager::getNewEdge()
     return edge;
 }
 
+Node* ElementManager::getCopyOf(Node *node)
+{
+    Node* nouv = new Node(countId);
+    idToElement[countId] = nouv;
+    countId++;
+    *nouv = *node;
+    return nouv;
+}
+
+Edge* ElementManager::getCopyOf(Edge *edge)
+{
+    Edge* nouv = new Edge(countId);
+    idToElement[countId] = nouv;
+    countId++;
+    *nouv = *edge;
+    return nouv;
+}
+
 
 void ElementManager::releaseElement(Element *element)
 {

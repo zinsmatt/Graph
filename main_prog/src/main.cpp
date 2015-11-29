@@ -12,11 +12,42 @@ int main(int argc, char *argv[])
 {
 
 
+    Graph gr(false, new AdjacencyMatrix);
 
+    ElementManager *manager = ElementManager::getInstance();
 
+    Node* n1 = manager->getNewNode();
+    Node* n2 = manager->getNewNode();
+    Node* n3 = manager->getNewNode();
 
+    gr.addNode(n1);
+    gr.addNode(n2);
+    gr.addNode(n3);
 
-    Graph g(new AdjacencyMatrix);
+    Edge *e12 = manager->getNewEdge();
+    Edge *e23 = manager->getNewEdge();
+    Edge *e13 = manager->getNewEdge();
+
+    gr.addEdge(e12,n1,n2);
+    gr.addEdge(e23,n2,n3);
+    gr.addEdge(e13,n1,n3);
+
+    cout << gr << endl;
+
+    gr.transformIntoOriented();
+
+    cout << gr << endl;
+
+    gr.transformIntoNonOriented();
+
+    cout << gr << endl;
+
+    gr.transformIntoOriented();
+
+    cout << gr << endl;
+/*
+
+    Graph g(true, new AdjacencyMatrix);
 
 
     ElementManager *manager = ElementManager::getInstance();
@@ -108,7 +139,7 @@ int main(int argc, char *argv[])
     std::cout << "Predecessors\n";
     for(int i=0;i<predecessors.size();i++)
      std::cout << predecessors[i]->getId() << std::endl;
-
+*/
    std::cout << "Allez le LOSC !!!! \n";
    return 0;
 

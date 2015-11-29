@@ -17,6 +17,11 @@ private:
      * */
     Node(ElementId id);
 
+    /* \brief Affectation operator
+     * \param Node to copy
+     * */
+    Node& operator =(const Node& node);
+
     /* \brief add an adjacent edge and put it in adjacent in/out edges if required
      * \param a pointer to the edge
      * \return true if added, false if already stored
@@ -28,6 +33,8 @@ private:
      * \return true if removed, false else
      * */
     bool removeAdjacentEdge(Edge* edge);
+
+
 
 public:
 

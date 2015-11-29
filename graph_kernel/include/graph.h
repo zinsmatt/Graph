@@ -17,6 +17,8 @@ private:
 
     std::vector<GraphContainer*> containers;
 
+    bool orientation;
+
     /* \brief Get a non const pointer on a node
      * \param node id
      * \return pointer on the node or nullptr
@@ -34,19 +36,22 @@ public:
 
 
     /* \brief Constructor
-     * \param a graph container
+     * \param a graph container and a boolean for orientation
      * */
-    Graph(GraphContainer *gc = nullptr);
+    Graph(bool _orientation, GraphContainer *gc = nullptr);
 
 
     /* \brief Destructor
      * */
     ~Graph();
 
-
+    // should be replaced
     unsigned int size() const {return idToNode.size();}
 
-
+    /* \brief Tell if graph is oriented or not
+     * \return boolean
+     * */
+    bool isOriented() const { return orientation; }
 
     /* \brief Add a node to the graph
      * \param a pointer to the node
@@ -64,13 +69,13 @@ public:
      * \param a pointer to the edge, extremity nodes pointer and a boolean for orientation
      * \return true if added, false otherwise
      * */
-    bool addEdge(Edge *edge, Node *n1, Node *n2, bool isOriented);
+    bool addEdge(Edge *edge, Node *n1, Node *n2);
 
     /* \brief Add an edge to the graph
      * \param a pointer to the edge, extremity nodes id and a boolean for orientation
      * \return true if added, false otherwise
      * */
-    bool addEdge(Edge *edge, ElementId idN1, ElementId idN2, bool isOriented);
+    bool addEdge(Edge *edge, ElementId idN1, ElementId idN2);
 
     /* \brief Remove an edge from the graph
      * \param a pointer to the edge to remove
@@ -124,6 +129,17 @@ public:
   /*  const GraphContainer* getContainer() const{
         return container;
     }*/
+
+
+    /* \brief Transform the graph into an oriented graph
+     * \return true if done, false if not possible
+     * */
+    bool transformIntoOriented();
+
+    /* \brief Transform the graph into a non oriented graph
+     * \return true if done, false if impossible
+     * */
+    bool transformIntoNonOriented();
 
 
 };

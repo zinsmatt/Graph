@@ -1,8 +1,12 @@
 #include "graph.h"
 #include "exception.h"
+#include "elementmanager.h"
 #include <iostream>
+#include <algorithm>
+#include <vector>
+#include <set>
 
-Graph::Graph(GraphContainer *gc)
+Graph::Graph(bool _orientation, GraphContainer *gc) : orientation(_orientation)
 {
     if(gc != nullptr)  //if a container is passed, it is added
     {
@@ -73,7 +77,7 @@ bool Graph::removeNode(Node *node)
     return true;
 }
 
-bool Graph::addEdge(Edge *edge, Node *n1, Node *n2, bool isOriented)
+bool Graph::addEdge(Edge *edge, Node *n1, Node *n2)
 {
     if(!edge || !n1 || !n2)
         return false;
@@ -90,7 +94,11 @@ bool Graph::addEdge(Edge *edge, Node *n1, Node *n2, bool isOriented)
 
     edge->setNode1(n1);
     edge->setNode2(n2);
-    edge->setOriented(isOriented);
+    edge->setOriented(orientation);
+
+    n1->addAdjacentEdge(edge);
+    n2->addAdjacentEdge(edge);
+
     idToEdge[edge->getId()] = edge;
 
     for(GraphContainer* contIt: containers)
@@ -104,12 +112,12 @@ bool Graph::addEdge(Edge *edge, Node *n1, Node *n2, bool isOriented)
     return true;
 }
 
-bool Graph::addEdge(Edge *edge, ElementId idN1, ElementId idN2, bool isOriented)
+bool Graph::addEdge(Edge *edge, ElementId idN1, ElementId idN2)
 {
     Node *n1 = this->getNode(idN1);
     Node *n2 = this->getNode(idN2);
 
-    return this->addEdge(edge,n1,n2,isOriented);
+    return this->addEdge(edge,n1,n2);
 }
 
 bool Graph::removeEdge(Edge *edge)
@@ -243,3 +251,90 @@ std::ostream& operator<<(std::ostream& os, Graph& g)
     os << g.toString() << std::endl;
     return os;
 }
+
+bool Graph::transformIntoOriented()
+{
+    if(orientation == true)
+    {
+        std::cerr << "Warning : graph already oriented" << std::endl;
+        return false;
+    }
+    ElementManager* manager = ElementManager::getInstance();
+    this->orientation = true;
+
+    // extract current edges
+    std::vector<Edge*> currentEdge;
+    for(auto edgeIt : idToEdge)
+        currentEdge.push_back(edgeIt.second);
+
+    for(Edge* edgeIt : currentEdge)
+    {
+        Edge *old = edgeIt;
+        Node *n1 = old->getNode1();
+        Node *n2 = old->getNode2();
+
+        this->removeEdge(old);
+
+        Edge* nouvInverse = manager->getCopyOf(old);
+        this->addEdge(old,n1,n2);
+        this->addEdge(nouvInverse,n2,n1);
+    }
+    return true;
+}
+
+bool Graph::transformIntoNonOriented()
+{
+    if(!orientation)
+    {
+        std::cerr << "Warning : graph already non oriented" << std::endl;
+        return false;
+    }
+
+    // extract current edges
+    std::vector<Edge*> currentEdge;
+    for(auto edgeIt : idToEdge)
+        currentEdge.push_back(edgeIt.second);
+
+    // edge that were mrege into one non oriented
+    std::set<Edge*> alreadyDeleted;
+    ElementManager* manager = ElementManager::getInstance();
+    this->orientation = false;
+
+    for(int edgeIt = 0; edgeIt<currentEdge.size(); edgeIt++)
+    {
+        Edge *edge = currentEdge[edgeIt];
+
+        if(alreadyDeleted.find(edge) != alreadyDeleted.end())
+            continue;
+
+        Edge *inverse = nullptr;
+        for(int edgeIt2 = edgeIt; edgeIt2 < currentEdge.size(); edgeIt2++)
+        {
+            if(edge->getNode1() == currentEdge[edgeIt2]->getNode2() &&
+                    edge->getNode2() == currentEdge[edgeIt2]->getNode1())
+            {
+                inverse = currentEdge[edgeIt2];
+            }
+        }
+
+        if(inverse)
+        {
+            Node *n1 = edge->getNode1();
+            Node *n2 = edge->getNode2();
+            this->removeEdge(edge);
+            this->removeEdge(inverse);
+
+            this->addEdge(edge,n1,n2);
+
+            alreadyDeleted.insert(inverse);
+            edge->mergeAttributes(inverse);
+
+        }else
+        {
+            // if no inverse edge is removed
+            this->removeEdge(edge);
+        }
+    }
+    return false;
+}
+
