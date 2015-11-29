@@ -73,16 +73,24 @@ bool Graph::removeNode(Node *node)
     return true;
 }
 
-bool Graph::addEdge(Edge *edge)
+bool Graph::addEdge(Edge *edge, Node *n1, Node *n2, bool isOriented)
 {
-    if(!edge)
+    if(!edge || !n1 || !n2)
         return false;
     if(this->isIn(edge))
     {
         std::cerr << "Impossible to add edge in the graph : edge already in" << std::endl;
         return false;
     }
+    if(!this->isIn(n1) || !this->isIn(n2))
+    {
+        std::cerr << "Impossible to add edge in the graph : one extremity doesn't exist in the graph" << std::endl;
+        return false;
+    }
 
+    edge->setNode1(n1);
+    edge->setNode2(n2);
+    edge->setOriented(isOriented);
     idToEdge[edge->getId()] = edge;
 
     for(GraphContainer* contIt: containers)
@@ -96,6 +104,14 @@ bool Graph::addEdge(Edge *edge)
     return true;
 }
 
+bool Graph::addEdge(Edge *edge, unsigned int idN1, unsigned int idN2, bool isOriented)
+{
+    Node *n1 = this->getNode(idN1);
+    Node *n2 = this->getNode(idN2);
+
+    return this->addEdge(edge,n1,n2,isOriented);
+}
+
 bool Graph::removeEdge(Edge *edge)
 {
     if(!edge || !edge->getNode1() || ! edge->getNode2())
@@ -104,15 +120,6 @@ bool Graph::removeEdge(Edge *edge)
     if(!this->isIn(edge))
     {
         std::cerr << "Impossible to remove edge from graph : edge is not in the graph" << std::endl;
-        return false;
-    }
-
-    Node* extremity1 = edge->getNode1();
-    Node* extremity2 = edge->getNode2();
-
-    if(!this->isIn(extremity1) || !this->isIn(extremity2))
-    {
-        std::cerr << "Impossible to remove from graph : an extremity is not in the graph" << std::endl;
         return false;
     }
 
@@ -160,6 +167,57 @@ bool Graph::isIn(Edge *edge) const
     return ret;
 }
 
+const Node* Graph::getNode(unsigned int id) const
+{
+    try
+    {
+        Node* temp = idToNode.at(id);
+        return temp;
+    }catch(...)
+    {
+        std::cerr << "Imposible to get node " << id << " : id unknow" << std::endl;
+        return nullptr;
+    }
+}
+
+const Edge* Graph::getEdge(unsigned int id) const
+{
+    try
+    {
+        Edge* temp = idToEdge.at(id);
+        return temp;
+    }catch(...)
+    {
+        std::cerr << "Imposible to get edeg " << id << " : id unknow" << std::endl;
+        return nullptr;
+    }
+}
+
+Node* Graph::getNode(unsigned int id)
+{
+    try
+    {
+        Node* temp = idToNode.at(id);
+        return temp;
+    }catch(...)
+    {
+        std::cerr << "Imposible to get node " << id << " : id unknow" << std::endl;
+        return nullptr;
+    }
+}
+
+Edge* Graph::getEdge(unsigned int id)
+{
+    try
+    {
+        Edge* temp = idToEdge.at(id);
+        return temp;
+    }catch(...)
+    {
+        std::cerr << "Imposible to get edeg " << id << " : id unknow" << std::endl;
+        return nullptr;
+    }
+}
 
 std::string Graph::toString() const
 {

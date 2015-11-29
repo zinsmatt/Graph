@@ -40,7 +40,6 @@ public:
 
     Node* getNewNode();
     Edge* getNewEdge();
-    Edge* getNewEdge(Node *n1, Node *n2, bool isOriented = true);
 
     void releaseElement(Element* element);
 

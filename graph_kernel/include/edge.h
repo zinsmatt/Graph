@@ -11,14 +11,21 @@ class Edge : public Element
      * */
     Edge(unsigned int id);
 
-    /* \brief Constructor
-     * \param id, 2 nodes and a boolean for orientation
+    /* \brief Set nodes[0]
+     * \param a pointer to the node
      * */
-    Edge(unsigned int id, Node* n1, Node *n2, bool oriented);
+    void setNode1(Node *n) { nodes[0] = n; }
+
+    /* \brief Set nodes[1]
+     * \param a pointer to the node
+     * */
+    void setNode2(Node *n) { nodes[1] = n; }
+
 
 public:
 
     friend class ElementManager;
+    friend class Graph;
 
     /* \brief Destructor
      * */
@@ -33,16 +40,6 @@ public:
      * \return true if the edge is oriented, else false
      * */
     bool isOriented() const { return oriented; }
-
-    /* \brief Set nodes[0]
-     * \param a pointer to the node
-     * */
-    void setNode1(Node *n) { nodes[0] = n; }
-
-    /* \brief Set nodes[1]
-     * \param a pointer to the node
-     * */
-    void setNode2(Node *n) { nodes[1] = n; }
 
     /* \brief Get nodes[0]
      * \return a pointer to the node

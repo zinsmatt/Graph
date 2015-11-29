@@ -40,13 +40,13 @@ int main(int argc, char *argv[])
     g.addNode(n3);
     g.addNode(n4);
 
-    Edge *e1 = manager->getNewEdge(n0,n1,true); //new Edge(n0,n1,true);
-    Edge *e2 = manager->getNewEdge(n1,n3,true); //new Edge(n1,n3,true);
-    Edge *e3 = manager->getNewEdge(n1,n4,true); //new Edge(n1,n4,true);
-    Edge *e4 = manager->getNewEdge(n0,n2,true); //new Edge(n0,n2,true);
-    Edge *e5 = manager->getNewEdge(n3,n2,true); //new Edge(n3,n2,true);
-    Edge *e6 = manager->getNewEdge(n2,n4,true); //new Edge(n2,n4,true);
-    Edge *e7 = manager->getNewEdge(n4,n1,true); //new Edge(n4,n1,true);
+    Edge *e1 = manager->getNewEdge(); //new Edge(n0,n1,true);
+    Edge *e2 = manager->getNewEdge(); //new Edge(n1,n3,true);
+    Edge *e3 = manager->getNewEdge(); //new Edge(n1,n4,true);
+    Edge *e4 = manager->getNewEdge(); //new Edge(n0,n2,true);
+    Edge *e5 = manager->getNewEdge(); //new Edge(n3,n2,true);
+    Edge *e6 = manager->getNewEdge(); //new Edge(n2,n4,true);
+    Edge *e7 = manager->getNewEdge(); //new Edge(n4,n1,true);
 
     e1->setFloatAttribute("cost",2);
     e2->setFloatAttribute("cost",1);
@@ -55,13 +55,13 @@ int main(int argc, char *argv[])
     e5->setFloatAttribute("cost",1);
     e6->setFloatAttribute("cost",4);
 
-    g.addEdge(e1);
-    g.addEdge(e2);
-    g.addEdge(e3);
-    g.addEdge(e4);
-    g.addEdge(e5);
-    g.addEdge(e6);
-    g.addEdge(e7);
+    g.addEdge(e1,n0,n1,true);
+    g.addEdge(e2,n1,n3,true);
+    g.addEdge(e3,n1,n4,true);
+    g.addEdge(e4,n0,n2,true);
+    g.addEdge(e5,n3,n2,true);
+    g.addEdge(e6,n2,n4,true);
+    g.addEdge(e7,n4,n1,true);
 
     cout << g << endl;
 

@@ -40,15 +40,6 @@ Edge* ElementManager::getNewEdge()
     return edge;
 }
 
-Edge* ElementManager::getNewEdge(Node *n1, Node *n2, bool isOriented)
-{
-    Edge* edge =  new Edge(countId,n1,n2,isOriented);
-    idToElement[countId] = edge;
-    countId++;
-    return edge;
-}
-
-
 
 void ElementManager::releaseElement(Element *element)
 {

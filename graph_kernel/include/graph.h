@@ -17,6 +17,19 @@ private:
 
     std::vector<GraphContainer*> containers;
 
+    /* \brief Get a non const pointer on a node
+     * \param node id
+     * \return pointer on the node or nullptr
+     * */
+    Node* getNode(unsigned int);
+
+    /* \brief Get a non const pointer on an edge
+     * \param edge id
+     * \return pointer on the edge or nullptr
+     * */
+    Edge* getEdge(unsigned int);
+
+
 public:
 
 
@@ -48,10 +61,16 @@ public:
     bool removeNode(Node *node);
 
     /* \brief Add an edge to the graph
-     * \param a pointer to the edge
-     * \return true if added, else false
+     * \param a pointer to the edge, extremity nodes pointer and a boolean for orientation
+     * \return true if added, false otherwise
      * */
-    bool addEdge(Edge *edge);
+    bool addEdge(Edge *edge, Node *n1, Node *n2, bool isOriented);
+
+    /* \brief Add an edge to the graph
+     * \param a pointer to the edge, extremity nodes id and a boolean for orientation
+     * \return true if added, false otherwise
+     * */
+    bool addEdge(Edge *edge, unsigned int idN1, unsigned int idN2, bool isOriented);
 
     /* \brief Remove an edge from the graph
      * \param a pointer to the edge to remove
@@ -59,13 +78,17 @@ public:
      * */
     bool removeEdge(Edge *edge);
 
-    /* \brief Get an edge from the graph
-     * \param two pointers to the nodes
-     * \return a pointeur to the edge if it exists, else nullptr
+    /* \brief Get a const pointer on a node
+     * \param node id
+     * \return const pointer on the node or nullptr
      * */
-    Edge* getEdge(Node* n1, Node *n2){
-        //return container->getEdge(n1,n2);
-    }
+    const Node* getNode(unsigned int id) const;
+
+    /* \brief Get a const pointer on an edge
+     * \param edge id
+     * \return const pointer on the edge or nullptr
+     * */
+    const Edge* getEdge(unsigned int id) const;
 
     /* \brief Get all nodes
      * \return a reference on the map of node

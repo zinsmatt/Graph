@@ -17,11 +17,6 @@ private:
      * */
     Node(unsigned int id);
 
-public:
-
-    friend class ElementManager;
-
-
     /* \brief add an adjacent edge and put it in adjacent in/out edges if required
      * \param a pointer to the edge
      * \return true if added, false if already stored
@@ -33,6 +28,12 @@ public:
      * \return true if removed, false else
      * */
     bool removeAdjacentEdge(Edge* edge);
+
+public:
+
+    friend class ElementManager;
+    friend class Graph;
+
 
     /* \brief get the adjacent edges liste
      * \return a const reference to the vector
