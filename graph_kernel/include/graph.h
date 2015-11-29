@@ -69,13 +69,13 @@ public:
      * \param a pointer to the edge, extremity nodes pointer and a boolean for orientation
      * \return true if added, false otherwise
      * */
-    bool addEdge(Edge *edge, Node *n1, Node *n2, bool _orientation);
+    bool addEdge(Edge *edge, Node *n1, Node *n2);
 
     /* \brief Add an edge to the graph
      * \param a pointer to the edge, extremity nodes id and a boolean for orientation
      * \return true if added, false otherwise
      * */
-    bool addEdge(Edge *edge, ElementId idN1, ElementId idN2, bool _orientation);
+    bool addEdge(Edge *edge, ElementId idN1, ElementId idN2);
 
     /* \brief Remove an edge from the graph
      * \param a pointer to the edge to remove
@@ -129,6 +129,17 @@ public:
   /*  const GraphContainer* getContainer() const{
         return container;
     }*/
+
+
+    /* \brief Transform the graph into an oriented graph
+     * \return true if done, false if not possible
+     * */
+    bool transformIntoOriented();
+
+    /* \brief Transform the graph into a non oriented graph
+     * \return true if done, false if impossible
+     * */
+    bool transformIntoNonOriented();
 
 
 };

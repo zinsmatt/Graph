@@ -23,6 +23,8 @@ public:
      * */
     Element(ElementId _id);
 
+    Element& operator=(const Element& elt);
+
     /* \brief Destructor
      * */
     virtual ~Element();
@@ -100,6 +102,11 @@ public:
      * \return boolean true if ok, false if key unknown
      * */
     bool getStringAttribute(const std::string& key, std::string& out) const;
+
+    /* \brief Merge all attributes
+     * \param the other element
+     * */
+    void mergeAttributes(const Element* elt2);
 
     /* \brief Getter for the id
      * */

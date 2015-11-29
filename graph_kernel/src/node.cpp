@@ -7,6 +7,15 @@ Node::Node(ElementId id) : Element(id)
 {
 }
 
+Node& Node::operator =(const Node& node)
+{
+    // not copied because this may not be in a graph
+    //this->adjacentEdges = node.adjacentEdges;
+    //this->adjacentInEdges = node.adjacentInEdges;
+    //this->adjacentOutEdges = node.adjacentOutEdges;
+
+    Element::operator=(node);
+}
 
 bool Node::addAdjacentEdge(Edge *edge)
 {

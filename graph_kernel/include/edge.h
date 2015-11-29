@@ -13,6 +13,11 @@ class Edge : public Element
      * */
     Edge(ElementId id);
 
+    /* \brief Affectation operator
+     * \param Edge to copy
+     * */
+    Edge& operator =(const Edge& edge);
+
     /* \brief Set nodes[0]
      * \param a pointer to the node
      * */

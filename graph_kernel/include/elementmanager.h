@@ -40,6 +40,8 @@ public:
 
     Node* getNewNode();
     Edge* getNewEdge();
+    Node* getCopyOf(Node* node);
+    Edge* getCopyOf(Edge* edge);
 
     void releaseElement(Element* element);
 
