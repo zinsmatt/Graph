@@ -6,7 +6,7 @@
 #include <QStyleOption>
 #include <iostream>
 
-Node2d::Node2d(const QString _id, int _size, QString _color, float _x, float _y) :
+Node2d::Node2d(const QString _id, int _size, const QString _color, float _x, float _y) :
     id(_id), color(_color), clicColor("#55aaff"), radius(_size)
 {
     setX(_x);
@@ -25,10 +25,6 @@ void Node2d::addEdge(Edge2d *edge)
     edge->adjust();
 }
 
-QList<Edge2d *> Node2d::edges() const
-{
-    return edgeList;
-}
 
 QRectF Node2d::boundingRect() const
 {

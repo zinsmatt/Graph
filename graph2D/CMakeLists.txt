@@ -11,7 +11,8 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 
-include_directories(include)
+include_directories(include ../graph_kernel/include)
+
 
 file(GLOB_RECURSE sources_files
     src/*
@@ -35,7 +36,7 @@ install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_SOURCE_DIR}/../bin/${PROJECT
 
 add_executable(main main.cpp)
 
-link_directories(${CMAKE_SOURCE_DIR}/../bin/${PROJECT_NAME}/${CMAKE_BUILD_TYPE})
 target_link_libraries(main graph2D)
+link_directories(${CMAKE_SOURCE_DIR}/../bin/${PROJECT_NAME}/${CMAKE_BUILD_TYPE})
 #install(TARGETS main DESTINATION ${CMAKE_SOURCE_DIR}/../bin/main/${CMAKE_BUILD_TYPE})
 

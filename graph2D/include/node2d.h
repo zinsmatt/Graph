@@ -2,7 +2,7 @@
 #define NODE2D_H
 #include <QGraphicsItem>
 #include <QList>
-
+#include "node.h"
 
 class Edge2d;
 QT_BEGIN_NAMESPACE
@@ -17,17 +17,18 @@ private:
     QString color;
     QString clicColor;
     QString id;
+    Node* node;
 
 public:
-    Node2d(const QString _id, int _size, QString _color, float _x, float _y);
+    Node2d(const QString _id, int _size, const QString _color, float _x, float _y);
     void addEdge(Edge2d *edge);
 
-    QList<Edge2d *> edges() const;
 
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter *painter, const
     QStyleOptionGraphicsItem *option, QWidget *widget);
+
 
     float getRadius() const {return radius;}
     void setRadius(float r){radius = r;}
@@ -38,6 +39,7 @@ public:
     const QString& getClicColor(){return clicColor;}
     void setClicColor(const QString& c){clicColor = c;}
 
+    const QString& getId() const {return id;}
 
 protected:
     QVariant itemChange(GraphicsItemChange change, const    QVariant &value);

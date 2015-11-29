@@ -15,21 +15,20 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 private:
     Ui::MainWindow *ui;
-    Graph2dScene scene;
+    Graph2dScene* scene;
     //ElementManager* element_manager;
 
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    QGraphicsScene& getScene(){return scene;}
-    void setGraph2d(Graph2d* _graph){scene.setGraph2d(_graph);}
-    void draw(){scene.drawGraph2d();}
-    //void updateLists();
-
+    QGraphicsScene& getScene(){return *scene;}
+    void draw(){scene->drawGraph2d();}
+    void updateLists();
+    void setScene(Graph2dScene* _scene);
 
 public slots:
-    //void inputEdge();
-    //void inputNode();
+    void inputEdge();
+    void inputNode();
 
 };
 

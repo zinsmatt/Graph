@@ -8,14 +8,20 @@ class Graph2dScene : public QGraphicsScene
 private:
     Graph2d* graph;
 public:
-    Graph2dScene();
+    Graph2dScene(Graph2d* _graph);
     void setGraph2d(Graph2d*  g){graph = g;}
     Graph2d& getGraph2d(){return *graph;}
     void drawGraph2d(){
         for(auto& i : graph->getNodes())
-            addItem(i.second);
+        {
+            if(i.second->scene() != this)
+                addItem(i.second);
+        }
         for(auto& i : graph->getEdges())
-            addItem(i.second);
+        {
+            if(i.second->scene() != this)
+                addItem(i.second);
+        }
     }
 };
 
